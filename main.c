@@ -2,15 +2,22 @@
 
 int main(void)
 {
-    struct s_student student;
+    struct s_student    *student;
+    bool                state;
 
-    if (student_create(&student) == true)
+    state = true;
+    if (student_create(student) == true)
     {
-        if (student_programm(&student) == true)
+        if (student_programm(student) == true)
+        {
             printf("Student App dankt Ihnen!\n");
+            state = false;
+        }
+        else
+            printError("Programm Error !\n");
     }
     else
         printError("Internal Error !\n");
-    student_destroy(&student);
-    return (0);
+    student_destroy(student);
+    return (state);
 }

@@ -12,14 +12,16 @@ struct s_datum {
 };
 
 struct s_student {
-    char *Nachname;
-    char *Matrikelnummer;
-    struct s_datum startdatum;
-    struct s_datum enddatum;
-    struct s_datum geburtsdatum;
+    char *nachName;
+    char *matrikelNummer;
+    struct s_datum startDatum;
+    struct s_datum endDatum;
+    struct s_datum geburtsDatum;
     
     struct s_student *next;
 };
+
+
 
 bool    addUser(struct s_student *student);
 bool    removeUser(struct s_student *student);
