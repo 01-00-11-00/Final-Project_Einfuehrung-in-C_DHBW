@@ -7,10 +7,11 @@ void    printError(char *str)
 
 void    printMenu()
 {
-    printf("Herzlich Willkom bei Student Appp!\n");
+    printf("Herzlich Willkommen in der bei Student App!\n");
     printf("Wie kann ich Ihnen Helfen ?\n");
-    printf("\t1- Neue User Hinzufuegen.\n");
-    printf("\t2- Ein User Loeschen.\n");
-    printf("\t3- Print User's Information.\n");
-    printf("\t4- Quit\n");
+    printf("\t1- Neue Studenten Hinzufuegen.\n");
+    printf("\t2- Ein Studenten Loeschen.\n");
+    printf("\t3- Studenten Informationen ausgeben.\n");
+    printf("\t4- Anzahl der Studenten ausgeben.\n");
+    printf("\t5- Quit\n");
 }

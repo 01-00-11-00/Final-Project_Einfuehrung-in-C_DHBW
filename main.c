@@ -6,18 +6,19 @@ int main(void)
     bool                state;
 
     state = true;
-    if (student_create(student) == true)
+
+    if (student_create(student) == true) // try to create the student array
     {
-        if (student_programm(student) == true)
+        if (student_program(student) == true) // checks if the program is running
         {
             printf("Student App dankt Ihnen!\n");
             state = false;
         }
         else
-            printError("Programm Error !\n");
+            printError("Program Error !\n");
     }
     else
         printError("Internal Error !\n");
-    student_destroy(student);
+    student_destroy(student); // deletes the array
     return (state);
 }

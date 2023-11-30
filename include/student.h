@@ -26,6 +26,7 @@ struct s_student {
 bool    addUser(struct s_student *student);
 bool    removeUser(struct s_student *student);
 void    printList(struct s_student *student);
+int     number_of_students(struct s_student *student);
 
 bool    student_create(struct s_student *student);
 bool    student_programm(struct s_student *student);
