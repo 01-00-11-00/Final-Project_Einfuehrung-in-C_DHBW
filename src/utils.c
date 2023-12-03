@@ -21,10 +21,12 @@ void    printHr()
     int i;
     int length;
     i = 0;
-    length = 20;
+    length = 40;
     printf("<");
     while(i < length)
     {
-        print("=");
+        printf("=");
+        i++;
     }
+    printf(">\n");
 }
