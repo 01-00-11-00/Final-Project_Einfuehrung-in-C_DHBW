@@ -15,3 +15,16 @@ void    printMenu()
     printf("\t4- Anzahl der Studenten ausgeben.\n");
     printf("\t5- Quit\n");
 }
+
+void    printHr()
+{
+    int i;
+    int length;
+    i = 0;
+    length = 20;
+    printf("<");
+    while(i < length)
+    {
+        print("=");
+    }
+}
