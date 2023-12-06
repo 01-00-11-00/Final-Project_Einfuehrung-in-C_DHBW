@@ -6,8 +6,6 @@ int main(void)
     bool                state;
 
     state = true;
-    if (student_create(&student) == true) // try to create the student array
-
     if (student_create(&student) == true) // write the array. Double pointer muss hier verwendet werden!!!
     {
         if (student_program(&student) == true) // checks if the program is running
