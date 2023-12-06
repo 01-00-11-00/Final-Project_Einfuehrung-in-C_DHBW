@@ -8,9 +8,9 @@ int main(void)
     state = true;
     if (student_create(&student) == true) // write the array. Double pointer muss hier verwendet werden!!!
     {
-        if (student_program(&student) == true) // checks if the program is running
+        if (student_program(student) == true) // checks if the program is running
         {
-            printf("Student App dankt Ihnen!\n");
+            print_middle("Student App dankt Ihnen!\n", 0);
             state = false;
         }
         else

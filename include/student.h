@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+static int     g_line = 15;
+
 struct s_datum {
     int tag;
     int monat;
@@ -32,7 +34,7 @@ int     number_of_students(struct s_student *student);
 // student.c
 bool    student_create(struct s_student **student);
 bool    student_program(struct s_student *student);
-void    student_destroy(struct s_student *student);
+void    student_destroy(struct s_student **student);
 
 
 // utils.c

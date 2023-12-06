@@ -52,14 +52,14 @@ bool    student_program(struct s_student *student)
 }
 
 // delete the student
-void    student_destroy(struct s_student *student)
+void    student_destroy(struct s_student **student)
 {
     struct s_student *tmp;
 
     while (!student)
     {
-        tmp = student;
-        student = student->next;
+        tmp = *student;
+        *student = (*student)->next;
         free(tmp);
         // TODO Free strings 
     }

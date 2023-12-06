@@ -24,14 +24,15 @@ void loadingScreen()
         progress++;
     }
     system("clear");
-    // printf("Hello, World!\n");
-    // printf("\033[0;0H");
     sleep(1);
 }
 
 void    print_middle(char *str, int line)
 {
-    printf("\033[%d;30H%s", line, str);
+    if (line != 0)
+        printf("\033[%d;30H%s", line, str);
+    else
+        printf("\033[%d;30H%s", g_line++, str);
 }
 
 void    printMenu()
