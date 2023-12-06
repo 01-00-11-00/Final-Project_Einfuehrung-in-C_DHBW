@@ -32,19 +32,29 @@ void    print_middle(char *str, int line)
     if (line != 0)
         printf("\033[%d;30H%s", line, str);
     else
-        printf("\033[%d;30H%s", g_line++, str);
+        printf("\033[%d;42H%s", g_line++, str);
 }
 
 void    printMenu()
 {
-    print_middle("Herzlich Willkom bei Student Appp!\n", 8);
-    print_middle("Wie kann ich Ihnen Helfen ?\n", 9);
-    print_middle("\t1- Neue User Hinzufuegen.\n", 10);    
-    print_middle("\t2- Ein User Loeschen.\n", 11);    
-    print_middle("\t3- Print User's Information.\n", 11);
-    print_middle("\t4- Number of users\n", 12);
-    print_middle("\t5- Quit\n", 13);
-    print_middle("> ", 14);
+    print_middle(".---------------------------------------------.\n", 5);
+    print_middle("|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|\n", 6);
+    print_middle("|xx.---------------------------------------.xx|\n", 7);
+    print_middle("|xx|  Herzlich Willkom bei Student Appp!   |xx|\n", 8);
+    print_middle("|xx|  Wie kann ich Ihnen Helfen ?          |xx|\n", 9);
+    print_middle("|xx|\t1- Neue User Hinzufuegen.       |xx|\n", 10);    
+    print_middle("|xx|\t2- Ein User Loeschen.           |xx|\n", 11);    
+    print_middle("|xx|\t3- Print User's Information.    |xx|\n", 12);
+    print_middle("|xx|\t4- Number of users.             |xx|\n", 13);
+    print_middle("|xx|\t5- Quit.                        |xx|\n", 14);
+    print_middle("|xx|  >                                    |xx|\n", 15);
+    print_middle("|xx*---------------------------------------*xx|\n", 16);
+    print_middle("|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|\n", 17);
+    print_middle(".---------------------------------------------.\n", 18);
+    print_middle("                |xxxxxxxxxxxxx|\n", 19);
+    print_middle("               /xxxxxxxxxxxxxxx\\\n", 20);
+    print_middle("              |xxxxxxxxxxxxxxxxx|\n", 21);
+    printf("\033[15;38H");
 }
 
 void    chomp(char *s)

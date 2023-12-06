@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-static int     g_line = 15;
+static int     g_line = 24;
 
 struct s_datum {
     int tag;

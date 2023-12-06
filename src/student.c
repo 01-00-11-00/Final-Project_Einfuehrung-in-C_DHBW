@@ -18,7 +18,7 @@ bool    student_program(struct s_student *student)
 {
     int wahl, read, ret_code;
 
-    loadingScreen();
+    // loadingScreen();
     while (true)
     {
         system("clear");
