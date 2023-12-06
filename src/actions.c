@@ -3,15 +3,7 @@
 /* Muss ein User zu unsere Linked List hinzufuegen */
 bool    addUser(struct s_student *student)
 {  
-    student->nachname = (char*) malloc(sizeof(char) * 100);
-    student->nachname = "A";
-   
-    struct s_student *new_student = (struct s_student*) malloc(sizeof(struct s_student));
-    new_student->nachname = (char*) malloc(sizeof(char) * 100);
-    new_student->nachname = "B";
-    student_insert(student, new_student);
-    
-    printf("HALLO\n");
+
     return (true);
 }
 
