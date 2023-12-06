@@ -28,6 +28,7 @@ int     number_of_students(struct s_student *head) {
     // check if the current student is the last student
     while (current_student != NULL) {
         num_students++;
+        print_middle(current_student->nachName, 15);
         current_student = current_student->next;
     }
     
@@ -52,48 +53,68 @@ bool    matrikelNummer_is_Set   (struct s_student s)
     return false;
 }
 
-bool s_datum_is_Set             (struct s_datum d)
-{
-    return d.jahr
-    && d.monat
-    && d.tag
-    ;
-}
+// bool s_datum_is_Set             (struct s_datum d)
+// {
+//     return d.jahr
+//     && d.monat
+//     && d.tag
+//     ;
+// }
 
-bool    startDatum_is_Set       (struct s_student s)
-{
-    if(s_datum_is_Set(s.startDatum))
-    {
-        return 1;
-    }
-    return false;
-}
-bool    endDatum_is_Set         (struct s_student s)
-{
-    if(s_datum_is_Set(s.endDatum))
-    {
-        return 1;
-    }
-    return false;
-}
-bool    geburtsDatum_is_Set     (struct s_student s)
-{
-    if(s_datum_is_Set(s.geburtsDatum))
-    {
-        return 1;
-    }
-    return false;
-}
+// bool    startDatum_is_Set       (struct s_student *s)
+// {
+//     if(s_datum_is_Set(s->startDatum))
+//     {
+//         return 1;
+//     }
+//     return false;
+// }
+// bool    endDatum_is_Set         (struct s_student *s)
+// {
+//     if(s_datum_is_Set(s->endDatum))
+//     {
+//         return 1;
+//     }
+//     return false;
+// }
+// bool    geburtsDatum_is_Set     (struct s_student *s)
+// {
+//     if(s_datum_is_Set(s->geburtsDatum))
+//     {
+//         return 1;
+//     }
+//     return false;
+// }
 
-/*bool next_is_Set(struct s_student s)
-{
-    if(**s.next)
-    {
-        return 1;
-    }
-    return false;
-}*/
+// /*bool next_is_Set(struct s_student *s)
+// {
+//     if(**s.next)
+//     {
+//         return 1;
+//     }
+//     return false;
+// }*/
 
+<<<<<<< HEAD
+// //Check ob alle Werte des Studenten gesetzt sind
+// bool    All_values_Set          (struct s_student *s)
+// {
+//     return nachName_is_Set(s)
+//     && matrikelNummer_is_Set(s)
+
+//     //Todo: Reihenfolge Datum überprüfen (geburt < start < end)
+//     && startDatum_is_Set(s)
+//     && endDatum_is_Set(s)
+//     && geburtsDatum_is_Set(s)
+//     //& next_is_Set(s)
+//     ;
+// }
+
+// struct s_datum setdatum (char info[50]){ //Info beinhaltet Grund des Datums
+//     printHr();
+//     printf("%s%s",info, " eingeben:\n\n");
+//     struct s_datum d;
+=======
 //Check ob alle Werte des Studenten gesetzt sind
 bool    All_values_Set          (struct s_student s)
 {
@@ -108,7 +129,8 @@ bool    All_values_Set          (struct s_student s)
     ;
 }
 
-struct s_datum setdatum (char *info){ //Info beinhaltet Grund des Datums
+struct s_datum setdatum (char *info) //Info beinhaltet Grund des Datums
+{
     printHr();
     printf("%s%s",info, " eingeben:\n\n");
     struct s_datum d;
@@ -136,28 +158,27 @@ struct s_datum setdatum (char *info){ //Info beinhaltet Grund des Datums
 
 // Eingabe der Daten eines Studenten
 // Leerer Student wird übergeben, befüllt und dann returned
-struct  s_student InputStudent  (struct s_student s)
+void    InputStudent  (struct s_student s)
 {
     do {
+        buf = malloc(sizeof(char));
         if(!nachName_is_Set(s)) // nur leere Werte erneut einlesen
-        {
-            fgets(s.nachname, 100 ,stdin); // TODO besseren Wert als 100 finden, Finn ist verantwortlich
-        }
+            fgets(s->nachName,/*Wie Lange ?*/ ,stdin);
         if(!matrikelNummer_is_Set(s))
         {
 
         }
         if(!startDatum_is_Set(s))
         {
-            s.startDatum = setdatum("Start Datum");
+            s->startDatum = setdatum("Start Datum");
         }
         if(!endDatum_is_Set(s))
         {
-            s.endDatum = setdatum("End Datum");
+            s->endDatum = setdatum("End Datum");
         }
         if(!geburtsDatum_is_Set(s))
         {
-            s.geburtsDatum = setdatum("Geburtsdatum");
+            s->geburtsDatum = setdatum("Geburtsdatum");
         }
     } while (!All_values_Set(s)); // Redu bis alle Werte gesetzt sind
 }

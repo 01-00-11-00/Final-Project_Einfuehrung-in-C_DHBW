@@ -18,10 +18,11 @@ bool    student_program(struct s_student *student)
 {
     int wahl, read, ret_code;
 
+    loadingScreen();
     while (true)
     {
+        system("clear");
         printMenu();
-        printf("> ");
         read = scanf("%d", &wahl);
         if (!read)
             return (false);
@@ -37,7 +38,8 @@ bool    student_program(struct s_student *student)
                 printList(student);
                 break;
             case 4:
-                printf("%d\n", number_of_students(student));
+                ret_code = number_of_students(student);
+                break;
             case 5: // end program 
                 return (true);
             default:
