@@ -3,7 +3,9 @@
 // create the student array
 bool student_create(struct s_student *student)
 {
-    student = malloc(sizeof(struct s_student)); // allocate storage space
+    memset(student, 0, sizeof(student));
+    student->nachName = strdup("mouad");
+    student->next = NULL;
     if (!student)
         return (false);
     return (true);
@@ -14,10 +16,11 @@ bool    student_program(struct s_student *student)
 {
     int wahl, read, ret_code;
 
+    loadingScreen();
     while (true)
     {
+        system("clear");
         printMenu();
-        printf("> ");
         read = scanf("%d", &wahl);
         if (!read)
             return (false);
@@ -33,7 +36,8 @@ bool    student_program(struct s_student *student)
                 printList(student);
                 break;
             case 4:
-                printf("%d\n", number_of_students(student));
+                ret_code = number_of_students(student);
+                break;
             case 5: // end program 
                 return (true);
             default:
@@ -48,12 +52,12 @@ bool    student_program(struct s_student *student)
 // delete the student
 void    student_destroy(struct s_student *student)
 {
-    struct s_student *tmp;
+    // struct s_student *tmp;
 
-    while (!student)
-    {
-        tmp = student;
-        student = student->next;
-        free(tmp);
-    }
+    // while (!student)
+    // {
+    //     tmp = student;
+    //     student = student->next;
+    //     free(tmp);
+    // }
 }

@@ -2,14 +2,14 @@
 
 int main(void)
 {
-    struct s_student    *student;
+    struct s_student    student;
     bool                state;
 
     state = true;
-
-    if (student_create(student) == true) // try to create the student array
+    // student = malloc(sizeof(student));
+    if (student_create(&student) == true) // try to create the student array
     {
-        if (student_program(student) == true) // checks if the program is running
+        if (student_program(&student) == true) // checks if the program is running
         {
             printf("Student App dankt Ihnen!\n");
             state = false;
@@ -19,6 +19,6 @@ int main(void)
     }
     else
         printError("Internal Error !\n");
-    student_destroy(student); // deletes the array
+    student_destroy(&student); // deletes the array
     return (state);
 }
