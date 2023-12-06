@@ -99,7 +99,7 @@ bool    All_values_Set          (struct s_student s)
     return nachName_is_Set(s)
     && matrikelNummer_is_Set(s)
 
-    //Todo: Reihenfolge Datum überprüfen (geburt < start < end)
+    //TODO: Reihenfolge Datum überprüfen (geburt < start < end)
     && startDatum_is_Set(s)
     && endDatum_is_Set(s)
     && geburtsDatum_is_Set(s)
@@ -107,7 +107,7 @@ bool    All_values_Set          (struct s_student s)
     ;
 }
 
-struct s_datum setdatum (char info[50]){ //Info beinhaltet Grund des Datums
+struct s_datum setdatum (char *info){ //Info beinhaltet Grund des Datums
     printHr();
     printf("%s%s",info, " eingeben:\n\n");
     struct s_datum d;
@@ -140,7 +140,7 @@ struct  s_student InputStudent  (struct s_student s)
     do {
         if(!nachName_is_Set(s)) // nur leere Werte erneut einlesen
         {
-            fgets(*s.nachName,/*Wie Lange ?*/ ,stdin);
+            fgets(s.nachName, 100 ,stdin); // TODO besseren Wert als 100 finden, Finn ist verantwortlich
         }
         if(!matrikelNummer_is_Set(s))
         {
