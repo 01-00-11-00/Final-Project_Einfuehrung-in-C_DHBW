@@ -2,7 +2,16 @@
 
 /* Muss ein User zu unsere Linked List hinzufuegen */
 bool    addUser(struct s_student *student)
-{
+{  
+    student->nachname = (char*) malloc(sizeof(char) * 100);
+    student->nachname = "A";
+   
+    struct s_student *new_student = (struct s_student*) malloc(sizeof(struct s_student));
+    new_student->nachname = (char*) malloc(sizeof(char) * 100);
+    new_student->nachname = "B";
+    student_insert(student, new_student);
+    
+    printf("HALLO\n");
     return (true);
 }
 
@@ -36,7 +45,7 @@ int     number_of_students(struct s_student *head) {
 
 bool    nachName_is_Set         (struct s_student s)
 {
-    if(*s.nachName)
+    if(*s.nachname)
     {
         return 1;
     }
@@ -44,7 +53,7 @@ bool    nachName_is_Set         (struct s_student s)
 }
 bool    matrikelNummer_is_Set   (struct s_student s)
 {
-    if(*s.matrikelNummer)
+    if(*s.matrikelnummer)
     {
         return 1;
     }
@@ -97,13 +106,13 @@ bool    geburtsDatum_is_Set     (struct s_student s)
 bool    All_values_Set          (struct s_student s)
 {
     return nachName_is_Set(s)
-    && matrikelNummer_is_Set(s)
+        && matrikelNummer_is_Set(s)
 
-    //TODO: Reihenfolge Datum überprüfen (geburt < start < end)
-    && startDatum_is_Set(s)
-    && endDatum_is_Set(s)
-    && geburtsDatum_is_Set(s)
-    //& next_is_Set(s)
+        //TODO: Reihenfolge Datum überprüfen (geburt < start < end)
+        && startDatum_is_Set(s)
+        && endDatum_is_Set(s)
+        && geburtsDatum_is_Set(s)
+        //& next_is_Set(s)
     ;
 }
 
@@ -140,7 +149,7 @@ struct  s_student InputStudent  (struct s_student s)
     do {
         if(!nachName_is_Set(s)) // nur leere Werte erneut einlesen
         {
-            fgets(s.nachName, 100 ,stdin); // TODO besseren Wert als 100 finden, Finn ist verantwortlich
+            fgets(s.nachname, 100 ,stdin); // TODO besseren Wert als 100 finden, Finn ist verantwortlich
         }
         if(!matrikelNummer_is_Set(s))
         {

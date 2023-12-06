@@ -12,8 +12,8 @@ struct s_datum {
 };
 
 struct s_student {
-    char *nachName;
-    char *matrikelNummer;
+    char *nachname;
+    char *matrikelnummer;
     struct s_datum startDatum;
     struct s_datum endDatum;
     struct s_datum geburtsDatum;
@@ -28,9 +28,11 @@ bool    removeUser(struct s_student *student);
 void    printList(struct s_student *student);
 int     number_of_students(struct s_student *student);
 
-bool    student_create(struct s_student *student);
+bool    student_create(struct s_student **student);
 bool    student_programm(struct s_student *student);
 void    student_destroy(struct s_student *student);
+
+void    student_insert(struct s_student *head, struct s_student *student);
 
 void    printError(char *str);
 void    printMenu();

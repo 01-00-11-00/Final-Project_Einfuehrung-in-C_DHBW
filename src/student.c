@@ -1,11 +1,15 @@
 #include "../include/student.h"
 
 // create the student array
-bool student_create(struct s_student *student)
+bool student_create(struct s_student **student)
 {
-    student = malloc(sizeof(struct s_student)); // allocate storage space
-    if (!student)
+    struct s_student *tmp = malloc(sizeof(struct s_student)); // allocate storage space
+    
+    if (tmp == NULL) 
         return (false);
+    
+    *student = tmp;
+    
     return (true);
 }
 
@@ -55,5 +59,33 @@ void    student_destroy(struct s_student *student)
         tmp = student;
         student = student->next;
         free(tmp);
+        // TODO Free strings 
     }
+
+}
+
+void    student_insert(struct s_student *head, struct s_student *student)
+{   
+    /*
+    Funktion funktioniert noch nicht. Wenn das Interface steht, kann weitergemacht werden. Insbesondere Studenten einlessen muss vorher implementiert werden.
+    
+    */
+    struct s_student *tmp;
+
+    tmp = head;
+
+    printf("HALLO\n");
+    printf("%s %s\n", student->nachname, tmp->nachname);
+
+
+    while (tmp->next != NULL) {
+        if (tmp->next->nachname[0] > student->nachname[0]) {
+            student->next = tmp->next;
+            tmp->next = student;
+            return;
+        } else {
+            tmp = tmp->next;
+        }
+    }
+
 }
