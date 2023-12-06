@@ -2,12 +2,13 @@
 
 int main(void)
 {
-    struct s_student    student;
+    struct s_student    *student;
     bool                state;
 
     state = true;
-    // student = malloc(sizeof(student));
     if (student_create(&student) == true) // try to create the student array
+
+    if (student_create(&student) == true) // write the array. Double pointer muss hier verwendet werden!!!
     {
         if (student_program(&student) == true) // checks if the program is running
         {
