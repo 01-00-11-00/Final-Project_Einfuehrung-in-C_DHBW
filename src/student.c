@@ -93,5 +93,4 @@ void    student_insert(struct s_student *head, struct s_student *student)
             tmp = tmp->next;
         }
     }
-
 }

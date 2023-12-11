@@ -1,14 +1,14 @@
 #include "../include/student.h"
 
 
-void    chomp(char *s)
+static void    chomp_local(char *s)
 {
     while (*s && *s != '\n' && *s != '\r')
         s++;
     *s = '\0';
 }
 
-void    getString(char *buf, int len)
+static void    getString_local(char *buf, int len)
 {
     fgets(buf, len, stdin);
     chomp(buf);

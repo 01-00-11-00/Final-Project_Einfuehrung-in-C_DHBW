@@ -6,12 +6,11 @@ int main(void)
     bool                state;
 
     state = true;
-
     if (student_create(&student) == true) // write the array. Double pointer muss hier verwendet werden!!!
     {
         if (student_program(student) == true) // checks if the program is running
         {
-            printf("Student App dankt Ihnen!\n");
+            print_middle("Student App dankt Ihnen!\n", 0);
             state = false;
         }
         else
@@ -19,6 +18,6 @@ int main(void)
     }
     else
         printError("Internal Error !\n");
-    student_destroy(student); // deletes the array
+    student_destroy(&student); // deletes the array
     return (state);
 }
