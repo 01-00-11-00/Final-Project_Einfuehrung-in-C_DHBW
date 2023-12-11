@@ -4,12 +4,13 @@
 bool student_create(struct s_student **student)
 {
     struct s_student *tmp = malloc(sizeof(struct s_student)); // allocate storage space
-    
     if (tmp == NULL) 
         return (false);
-    
+  
+    tmp->nachname = (char*) malloc(sizeof(char));
+    tmp->matrikelnummer = (char*) malloc(sizeof(char));
     *student = tmp;
-    
+ 
     return (true);
 }
 
