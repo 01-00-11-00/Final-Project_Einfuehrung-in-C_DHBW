@@ -11,7 +11,7 @@ static void    chomp_local(char *s)
 static void    getString_local(char *buf, int len)
 {
     fgets(buf, len, stdin);
-    chomp(buf);
+    chomp_local(buf);
 }
 
 
@@ -159,12 +159,12 @@ void student_input(struct s_student *s)
         if (!nachName_is_Set(s)) // nur leere Werte erneut einlesen
         {
             printf("\nNachname: ");
-            getString(s->nachname, 100);
+            getString_local(s->nachname, 100);
         }
         if (!matrikelnummer_is_Set(s))
         {
             printf("\nMatrikelnummer: ");
-            getString(s->matrikelnummer, 100);
+            getString_local(s->matrikelnummer, 100);
         }
         if (!startDatum_is_Set(s))
         {

@@ -37,7 +37,7 @@ void    student_input(struct s_student *s);
 // student.c
 bool    student_create(struct s_student **student);
 bool    student_program(struct s_student *student);
-void    student_destroy(struct s_student **student);
+void    student_destroy(struct s_student *student);
 
 
 // utils.c
