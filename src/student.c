@@ -7,9 +7,12 @@ bool student_create(struct s_student **student)
     
     if (tmp == NULL) 
         return (false);
-    
+
+    tmp->nachname = (char*) malloc(sizeof(char));
+    tmp->matrikelnummer = (char*) malloc(sizeof(char));
+
     *student = tmp;
-    
+
     return (true);
 }
 
@@ -20,6 +23,9 @@ bool    student_program(struct s_student *student)
 
     while (true)
     {
+        //test
+        student_input(student);
+
         printMenu();
         printf("> ");
         read = scanf("%d", &wahl);
