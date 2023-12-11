@@ -148,17 +148,17 @@ struct s_datum setdatum(char *info)
     char input[10]; // Max 10 Zeichen für input -> Max mögliche Jahreszahl = 9999999999
 
     // Einlesen der Daten für den Tag
-    printf("Bitte geben Sie den Tag ein (1 - 31):\n>");
+    printf("Bitte geben Sie den Tag ein (1 - 31): ");
     fgets(input, sizeof(input), stdin);
     d.tag = atoi(input) > 0 && atoi(input) <= 31 ? atoi(input) : 0;
 
     // Einlesen der Daten für den Monat
-    printf("Bitte geben Sie den Monat ein (1 - 12):\n>");
+    printf("Bitte geben Sie den Monat ein (1 - 12): ");
     fgets(input, sizeof(input), stdin);
     d.monat = atoi(input) > 0 && atoi(input) <= 12 ? atoi(input) : 0;
 
     // Einlesen der Daten für das Jahr
-    printf("Bitte geben Sie das Jahr ein (>0):\n>");
+    printf("Bitte geben Sie das Jahr ein (>0): ");
     fgets(input, sizeof(input), stdin);
     d.jahr = atoi(input) > 0 ? atoi(input) : 0;
 
