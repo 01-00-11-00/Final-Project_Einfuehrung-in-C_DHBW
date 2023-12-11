@@ -34,6 +34,11 @@ int     number_of_students(struct s_student *student);
 void    student_insert(struct s_student *head, struct s_student *student);
 void    student_input(struct s_student *s);
 
+int     student_info_print_one(struct s_student *student);
+int     student_info_print_all(struct s_student *student);
+int     student_info_write(struct s_student *student);
+int     student_info_read(struct s_student *student);
+
 // student.c
 bool    student_create(struct s_student **student);
 bool    student_program(struct s_student *student);

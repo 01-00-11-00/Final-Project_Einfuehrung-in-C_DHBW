@@ -4,15 +4,13 @@
 bool student_create(struct s_student **student)
 {
     struct s_student *tmp = malloc(sizeof(struct s_student)); // allocate storage space
-    
     if (tmp == NULL) 
         return (false);
-
+  
     tmp->nachname = (char*) malloc(sizeof(char));
     tmp->matrikelnummer = (char*) malloc(sizeof(char));
-
     *student = tmp;
-
+ 
     return (true);
 }
 
@@ -21,13 +19,11 @@ bool    student_program(struct s_student *student)
 {
     int wahl, read, ret_code;
 
+    // loadingScreen();
     while (true)
     {
-        //test
-        student_input(student);
-
+        system("clear");
         printMenu();
-        printf("> ");
         read = scanf("%d", &wahl);
         if (!read)
             return (false);
@@ -43,8 +39,17 @@ bool    student_program(struct s_student *student)
                 printList(student);
                 break;
             case 4:
-                printf("%d\n", number_of_students(student));
-            case 5: // end program 
+                ret_code = number_of_students(student);
+                break;
+            case 5:
+                ret_code = student_info_print_one(student);
+            case 6:
+                ret_code = student_info_print_all(student);
+            case 7:
+                ret_code = student_info_write(student);
+            case 8:
+                ret_code = student_info_read(student);
+            case 9: // end program 
                 return (true);
             default:
                 printError("Eingabe nicht korrekt. :(\n");
@@ -56,14 +61,14 @@ bool    student_program(struct s_student *student)
 }
 
 // delete the student
-void    student_destroy(struct s_student *student)
+void    student_destroy(struct s_student **student)
 {
     struct s_student *tmp;
 
     while (!student)
     {
-        tmp = student;
-        student = student->next;
+        tmp = *student;
+        *student = (*student)->next;
         free(tmp);
         // TODO Free strings 
     }
@@ -93,4 +98,5 @@ void    student_insert(struct s_student *head, struct s_student *student)
             tmp = tmp->next;
         }
     }
+
 }

@@ -14,6 +14,25 @@ static void    getString_local(char *buf, int len)
     chomp_local(buf);
 }
 
+int     student_info_print_one(struct s_student *student)
+{
+    return (true);
+}
+
+int     student_info_print_all(struct s_student *student)
+{
+    return (true);
+}
+
+int     student_info_write(struct s_student *student)
+{
+    return (true);
+}
+
+int     student_info_read(struct s_student *student)
+{
+    return (true);
+}
 
 /* Muss ein User zu unsere Linked List hinzufuegen */
 bool addUser(struct s_student *student)
