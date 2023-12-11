@@ -68,13 +68,23 @@ int number_of_students(struct s_student *head)
 
     return num_students;
 }
+bool string_only_space(char *str)
+{
+    int i = 0;
+    while(str[i] != '\0'){
+        if(str[i] != ' ')
+            return false;
+        i++;
+    }
+    return true;
+}
 
 bool nachName_is_Set(struct s_student *s)
 {
 
-    if (s->nachname[0] == '\0')
+    if (s->nachname[0] == '\0'
+    || string_only_space(s->nachname))
     {
-
         return false;
     }
     return true;
@@ -82,7 +92,8 @@ bool nachName_is_Set(struct s_student *s)
 bool matrikelnummer_is_Set(struct s_student *s)
 {
     //printf("%p\n",s->matrikelnummer); //test
-    if (s->matrikelnummer[0] == '\0')
+    if (s->matrikelnummer[0] == '\0'
+    || string_only_space(s->matrikelnummer))
     {
         return false;
     }
@@ -131,10 +142,13 @@ bool geburtsDatum_is_Set(struct s_student *s)
 // Check ob alle Werte des Studenten gesetzt sind
 bool All_values_Set(struct s_student *s)
 {
-    return nachName_is_Set(s) && matrikelnummer_is_Set(s)
+    return nachName_is_Set(s)
+    && matrikelnummer_is_Set(s)
 
-           // TODO: Reihenfolge Datum überprüfen (geburt < start < end)
-           && startDatum_is_Set(s) && endDatum_is_Set(s) && geburtsDatum_is_Set(s)
+    && startDatum_is_Set(s)
+    && endDatum_is_Set(s)
+    && geburtsDatum_is_Set(s)
+        // TODO: Reihenfolge Datum überprüfen (geburt < start < end)
         //& next_is_Set(s)
         ;
 }
@@ -172,7 +186,6 @@ struct s_datum setdatum(char *info)
 // Leerer Student wird übergeben, befüllt und dann returned
 void student_input(struct s_student *s)
 {
-    printf("itworks");
     do
     {
         if (!nachName_is_Set(s)) // nur leere Werte erneut einlesen
@@ -197,13 +210,11 @@ void student_input(struct s_student *s)
         {
             s->geburtsDatum = setdatum("Geburtsdatum");
         }
+
+        if(!All_values_Set(s)) //Info an Benutzer: Ungültige Werte erneut eingeben
+        {
+            printf("Nicht alle Werte wurden gesetzt. Bitte versuchen Sie es erneut!\n");
+        }
+
     } while (!All_values_Set(s)); // Redu bis alle Werte gesetzt sind
-
-
-
-    /*printf("Last Name: %s\n", s->nachname);
-    printf("Matriculation Number: %s\n", s->matrikelnummer);
-    printf("Start Date: %d/%d/%d\n", s->startDatum.tag, s->startDatum.monat, s->startDatum.jahr);
-    printf("End Date: %d/%d/%d\n", s->endDatum.tag, s->endDatum.monat, s->endDatum.jahr);
-    printf("Birth Date: %d/%d/%d\n", s->geburtsDatum.tag, s->geburtsDatum.monat, s->geburtsDatum.jahr);*/
 }
