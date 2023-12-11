@@ -40,7 +40,15 @@ bool    student_program(struct s_student *student)
             case 4:
                 ret_code = number_of_students(student);
                 break;
-            case 5: // end program 
+            case 5:
+                ret_code = student_info_print_one(student);
+            case 6:
+                ret_code = student_info_print_all(student);
+            case 7:
+                ret_code = student_info_write(student);
+            case 8:
+                ret_code = student_info_read(student);
+            case 9: // end program 
                 return (true);
             default:
                 printError("Eingabe nicht korrekt. :(\n");

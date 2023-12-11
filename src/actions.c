@@ -36,6 +36,26 @@ int     number_of_students(struct s_student *head) {
 
 }
 
+int     student_info_print_one(struct s_student *student)
+{
+    return (true);
+}
+
+int     student_info_print_all(struct s_student *student)
+{
+    return (true);
+}
+
+int     student_info_write(struct s_student *student)
+{
+    return (true);
+}
+
+int     student_info_read(struct s_student *student)
+{
+    return (true);
+}
+
 // bool    nachName_is_Set         (struct s_student s)
 // {
 //     if(*s.nachname)
