@@ -7,9 +7,12 @@ bool student_create(struct s_student **student)
     
     if (tmp == NULL) 
         return (false);
-    
+
+    tmp->nachname = (char*) malloc(sizeof(char));
+    tmp->matrikelnummer = (char*) malloc(sizeof(char));
+
     *student = tmp;
-    
+
     return (true);
 }
 
@@ -18,11 +21,13 @@ bool    student_program(struct s_student *student)
 {
     int wahl, read, ret_code;
 
-    // loadingScreen();
     while (true)
     {
-        system("clear");
+        //test
+        student_input(student);
+
         printMenu();
+        printf("> ");
         read = scanf("%d", &wahl);
         if (!read)
             return (false);
@@ -38,8 +43,7 @@ bool    student_program(struct s_student *student)
                 printList(student);
                 break;
             case 4:
-                ret_code = number_of_students(student);
-                break;
+                printf("%d\n", number_of_students(student));
             case 5: // end program 
                 return (true);
             default:
@@ -52,14 +56,14 @@ bool    student_program(struct s_student *student)
 }
 
 // delete the student
-void    student_destroy(struct s_student **student)
+void    student_destroy(struct s_student *student)
 {
     struct s_student *tmp;
 
     while (!student)
     {
-        tmp = *student;
-        *student = (*student)->next;
+        tmp = student;
+        student = student->next;
         free(tmp);
         // TODO Free strings 
     }
@@ -89,5 +93,4 @@ void    student_insert(struct s_student *head, struct s_student *student)
             tmp = tmp->next;
         }
     }
-
 }

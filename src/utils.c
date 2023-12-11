@@ -76,17 +76,17 @@ void    printError(char *str)
     dprintf(2, "%s", str);
 }
  
-// void    printHr()
-// {
-//     int i;
-//     int length;
-//     i = 0;
-//     length = 40;
-//     printf("<");
-//     while(i < length)
-//     {
-//         printf("=");
-//         i++;
-//     }
-//     printf(">\n");
-// }
+void    printHr()
+{
+    int i;
+    int length;
+    i = 0;
+    length = 40;
+    printf("<");
+    while(i < length)
+    {
+        printf("=");
+        i++;
+    }
+    printf(">\n");
+}
