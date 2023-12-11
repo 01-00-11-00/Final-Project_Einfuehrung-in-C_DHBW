@@ -42,7 +42,7 @@ int     student_info_read(struct s_student *student);
 // student.c
 bool    student_create(struct s_student **student);
 bool    student_program(struct s_student *student);
-void    student_destroy(struct s_student *student);
+void    student_destroy(struct s_student **student);
 
 
 // utils.c

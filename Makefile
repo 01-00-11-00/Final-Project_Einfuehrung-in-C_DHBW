@@ -11,20 +11,20 @@ CFLAGS 		= -g
 all: $(NAME)
 
 %.o: %.c
-	$(CC) -Iincludes $(CFLAGS) -c $< -o $@
+	@$(CC) -Iincludes $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
 	echo "Dependencies Compiled !"
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
 	echo "Compiled !"
 
 clean:
-	-$(RM) $(OBJECTS) $(DEPENDS)
-	-$(RM) $(OBJECTS)
+	-@$(RM) $(OBJECTS) $(DEPENDS)
+	-@$(RM) $(OBJECTS)
 	echo "Everything is Cleaned !"
 
 fclean: clean
-	-$(RM) $(NAME)
+	-@$(RM) $(NAME)
 
 run: all
 	./$(NAME)

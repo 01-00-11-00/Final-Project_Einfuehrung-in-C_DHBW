@@ -206,7 +206,4 @@ void student_input(struct s_student *s)
     printf("Start Date: %d/%d/%d\n", s->startDatum.tag, s->startDatum.monat, s->startDatum.jahr);
     printf("End Date: %d/%d/%d\n", s->endDatum.tag, s->endDatum.monat, s->endDatum.jahr);
     printf("Birth Date: %d/%d/%d\n", s->geburtsDatum.tag, s->geburtsDatum.monat, s->geburtsDatum.jahr);*/
-
-
-    return true;
 }
