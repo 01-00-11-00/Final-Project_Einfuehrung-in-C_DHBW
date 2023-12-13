@@ -14,14 +14,14 @@ all: $(NAME)
 	@$(CC) -Iincludes $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
-	echo "Dependencies Compiled !"
+	@echo "Dependencies Compiled !"
 	@$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
-	echo "Compiled !"
+	@echo "Compiled !"
 
 clean:
 	-@$(RM) $(OBJECTS) $(DEPENDS)
 	-@$(RM) $(OBJECTS)
-	echo "Everything is Cleaned !"
+	@echo "Everything is Cleaned !"
 
 fclean: clean
 	-@$(RM) $(NAME)

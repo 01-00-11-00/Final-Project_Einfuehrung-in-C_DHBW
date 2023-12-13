@@ -55,9 +55,9 @@ void printList(struct s_student *student)
 // return number of students
 int number_of_students(struct s_student *head)
 {
-
-    int num_students = 0;
-    struct s_student *current_student = head;
+    int                 num_students = 0;
+    int                 back;
+    struct s_student    *current_student = head;
 
     // check if the current student is the last student
     while (current_student != NULL)
@@ -65,8 +65,20 @@ int number_of_students(struct s_student *head)
         num_students++;
         current_student = current_student->next;
     }
+    do {
+        system("clear");
+        printf("\033[5;35HThe number of students : %d\n", num_students);
+        printf("\033[35;10HPrint 1 if you want to go back !\n");
+        printf("\033[36;10H> ");
+        scanf("%d", &back);
+        if (back == 1)
+            break;
+        else
+            continue;
+    }
+    while (true);
 
-    return num_students;
+    return (true);
 }
 
 bool nachName_is_Set(struct s_student *s)

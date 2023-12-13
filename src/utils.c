@@ -98,3 +98,10 @@ void    printHr()
     printf(">\n");
 }
 
+// TODO !
+// void go_back()
+// {
+//     printf("\033[35;45HClick on b if you want to go back to the menu !\n");
+//     printf("\33[2K\r");
+//     usleep(500000);
+// }
