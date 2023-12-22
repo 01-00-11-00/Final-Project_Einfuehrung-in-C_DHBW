@@ -91,18 +91,14 @@ int number_of_students(struct s_student *head)
 bool nachName_is_Set(struct s_student *s)
 {
 
-    if (s->nachname[0] == '\0'
-    || string_only_space(s->nachname))
-
+    return (s->nachname[0] != '\0' && !string_only_space(s->nachname));
+        
+}
 
 bool matrikelnummer_is_Set(struct s_student *s)
 {
-    //printf("%p\n",s->matrikelnummer); //test
-    if (s->matrikelnummer[0] == '\0'
-    || string_only_space(s->matrikelnummer))
-=======
-    */
-    return false;
+    return (s->matrikelnummer[0] != '\0' && !string_only_space(s->matrikelnummer));
+        
 }
 
 
@@ -111,60 +107,41 @@ bool s_datum_is_Set(struct s_datum d)
     return d.jahr && d.monat && d.tag;
 }
 
-bool date_is_same_or_later(struct s_datum d1, struct s_datum d2)
-        // d1 muss größer sein als d2, da die Daten in folgender Reihenfolge sein müssen:
-        // Geburtstag, Startdatum, Enddatum (können natürlich auch alle an einem Tag sein, wenn jemand nen 1000er iq hat)
+bool verify_no_time_travel(struct s_datum smaller, struct s_datum bigger)
 {
-    if(d1.jahr >  d2.jahr
-    || d1.jahr == d2.jahr && d1.monat >  d2.monat
-    || d1.jahr == d2.jahr && d1.monat == d2.monat && d1.tag > d2.tag)
+    // smaller muss größer oder gleich sein als bigger
+    
+    int smaller_timestamp = smaller.jahr * 356 + smaller.monat * 31 + smaller.tag;
+    int bigger_timestamp = bigger.jahr * 356 + bigger.monat * 31 + bigger.tag;
 
-    {
-        return 0;
-    }
-    return 1;
+    return smaller_timestamp <= bigger_timestamp;
+
+}
 
 bool startDatum_is_Set(struct s_student *s)
 {
-    if (s_datum_is_Set(s->startDatum)
-    && date_is_same_or_later(s->geburtsDatum, s-> startDatum)) //gebdate vor startdate
-
-    {
-        return 1;
-    }
-    return 0;
+    return (s_datum_is_Set(s->startDatum)
+    && verify_no_time_travel(s->geburtsDatum, s->startDatum)); 
 }
-
 
 bool endDatum_is_Set(struct s_student *s)
 {
-    if (s_datum_is_Set(s->endDatum)
-    && date_is_same_or_later(s->startDatum, s->endDatum)) //startdate vor enddate
-
-    {
-        return 1;
-    }
-    return 0;
+    return (s_datum_is_Set(s->endDatum) && verify_no_time_travel(s->startDatum, s->endDatum));
 }
   
 bool geburtsDatum_is_Set(struct s_student *s)
 {
-    if (s_datum_is_Set(s->geburtsDatum))
-    {
-        return 1;
-    }
-    return false;
+    return (s_datum_is_Set(s->geburtsDatum));
 }
 
 // Check, ob alle Werte des Studenten gesetzt sind
 bool All_values_Set(struct s_student *s)
 {
     return nachName_is_Set(s)
-    && matrikelnummer_is_Set(s)
-
-    && startDatum_is_Set(s)
-    && endDatum_is_Set(s)
-    && geburtsDatum_is_Set(s);
+        && matrikelnummer_is_Set(s)
+        && startDatum_is_Set(s)
+        && endDatum_is_Set(s)
+        && geburtsDatum_is_Set(s);
 }
 
 struct s_datum setdatum(char *info) { //Info beinhaltet Grund des Datums
@@ -201,10 +178,10 @@ struct s_datum setdatum(char *info) { //Info beinhaltet Grund des Datums
 
 // Eingabe der Daten eines Studenten
 // Leerer Student wird übergeben, befüllt und dann returned
-void student_input(struct s_student *s)
+void input_student(struct s_student *s)
 {
     printf("\033[2J\033[H");
-    char heading[] = "----------     Neuen Student Anlegen     ----------\n\n";
+    char heading[] = "----------     Neuen Studenten anlegen     ----------\n\n";
     do
     {
         if (!nachName_is_Set(s)) // nur leere Werte erneut einlesen
@@ -218,7 +195,7 @@ void student_input(struct s_student *s)
                 printf("Nachname ungültig! Bitte versuchen Sie es erneut.");
                 getchar();
                 continue;
-            } //Redo bis gültige Werte gesetzt sind
+            } 
         }
         if (!matrikelnummer_is_Set(s))
         {
@@ -238,7 +215,7 @@ void student_input(struct s_student *s)
         {
             printf("\033[2J\033[H");
             printf("%s",heading);
-            s->geburtsDatum = setdatum("Geburtsdatum");
+            s->geburtsDatum = setdatum("Geburtsdatumd");
             if(!geburtsDatum_is_Set(s))
             {
                 printf("Geburtsdatum ungültig! Bitte versuchen Sie es erneut und beachten Sie die richtige Reihenfolge der Datums.");
