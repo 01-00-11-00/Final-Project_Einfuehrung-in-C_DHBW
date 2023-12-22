@@ -17,7 +17,7 @@ bool student_create(struct s_student **student)
 
 bool    student_program(struct s_student *student)
 {
-    student_input(student);
+    //student_input(student); //nur zum testen
 
     int wahl, read, ret_code;
 

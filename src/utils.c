@@ -98,3 +98,13 @@ void    printHr()
     printf(">\n");
 }
 
+bool string_only_space(char *str)
+{
+    int i = 0;
+    while(str[i] != '\0'){
+        if(str[i] != ' ')
+            return false;
+        i++;
+    }
+    return true;
+}

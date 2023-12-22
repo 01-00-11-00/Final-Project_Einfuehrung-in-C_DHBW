@@ -54,3 +54,4 @@ void    printHr();
 void    getString(char *buf, char *prompt, int len);
 void    loadingScreen();
 void    print_middle(char *str, int line);
+bool    string_only_space(char *str);
