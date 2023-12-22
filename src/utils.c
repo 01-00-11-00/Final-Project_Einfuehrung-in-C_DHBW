@@ -28,5 +28,5 @@ void    printHr()
         printf("=");
         i++;
     }
-    printf(">\n");
+    // printf(">\n");  Why would here be a > ??? 
 }

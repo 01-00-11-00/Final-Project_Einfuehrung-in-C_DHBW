@@ -4,15 +4,15 @@
 bool student_create(struct s_student **student)
 {
     struct s_student *tmp = malloc(sizeof(struct s_student)); // allocate storage space
+    tmp->nachname = malloc(sizeof(char) * 100);
     
-    if (tmp == NULL) 
+    if (tmp == NULL || tmp->nachname == NULL) 
         return (false);
     
     *student = tmp;
-    
+
     return (true);
 }
-
 
 bool    student_program(struct s_student *student)
 {
@@ -21,10 +21,21 @@ bool    student_program(struct s_student *student)
     while (true)
     {
         printMenu();
-        printf("> ");
-        read = scanf("%d", &wahl);
-        if (!read)
-            return (false);
+        
+        char buf[100]; // use 1/100KB just to be sure
+
+        do
+        {
+            printf("> ");
+            if (!fgets(buf, 100, stdin))
+            {
+                // reading input failed, give up:
+                return 1;
+            }
+            // have some input, convert it to integer:
+            wahl = atoi(buf);
+        } while (wahl == 0); // repeat until we got a valid number
+        
         switch(wahl)
         {
             case 1:

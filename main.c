@@ -2,23 +2,19 @@
 
 int main(void)
 {
-    struct s_student    *student;
+    struct s_student    *head;
     bool                state;
 
     state = true;
 
-    if (student_create(&student) == true) // write the array. Double pointer muss hier verwendet werden!!!
+    student_create(&head); // create the student array
+
+
+    if (student_program(head) == true) // checks if the program is running
     {
-        if (student_program(student) == true) // checks if the program is running
-        {
-            printf("Student App dankt Ihnen!\n");
-            state = false;
-        }
-        else
-            printError("Program Error !\n");
+        state = false;
     }
     else
-        printError("Internal Error !\n");
-    student_destroy(student); // deletes the array
+        printError("Program Error !\n");
     return (state);
 }
