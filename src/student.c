@@ -1,5 +1,5 @@
 #include "../include/student.h"
-
+#include<unistd.h>
 // create the student array
 bool student_create(struct s_student **student)
 {
@@ -15,6 +15,7 @@ bool student_create(struct s_student **student)
     return (true);
 }
 
+
 bool    student_program(struct s_student *student)
 {
     //student_input(student); //nur zum testen
@@ -26,8 +27,9 @@ bool    student_program(struct s_student *student)
     {
         system("clear");
         printMenu();
-      
+        
         char buf[100]; // use 1/100KB just to be sure
+        memset(buf, 0, 100); // clear the buffer before reading
 
         do
         {
@@ -37,9 +39,16 @@ bool    student_program(struct s_student *student)
                 // reading input failed, give up:
                 return 1;
             }
+
+            for(int i = 0; i < 100; i++) {
+                printf("%d", buf[i]);
+            }
+
             // have some input, convert it to integer:
             wahl = atoi(buf);
+            printf("wahl: %d\n", wahl);
         } while (wahl == 0); // repeat until we got a valid number
+        
         
         switch(wahl)
         {
@@ -89,7 +98,7 @@ void    student_destroy(struct s_student **student)
 
 }
 
-void    student_insert(struct s_student *head, struct s_student *student)
+void    insert_student(struct s_student *head, struct s_student *student)
 {   
     /*
     Funktion funktioniert noch nicht. Wenn das Interface steht, kann weitergemacht werden. Insbesondere Studenten einlessen muss vorher implementiert werden.
@@ -99,8 +108,6 @@ void    student_insert(struct s_student *head, struct s_student *student)
 
     tmp = head;
 
-    printf("HALLO\n");
-    printf("%s %s\n", student->nachname, tmp->nachname);
 
 
     while (tmp->next != NULL) {
