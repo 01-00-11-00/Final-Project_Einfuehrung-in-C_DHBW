@@ -34,9 +34,28 @@ int     student_info_read(struct s_student *student)
     return (true);
 }
 
+
 /* Muss ein User zu unsere Linked List hinzufuegen */
-bool addUser(struct s_student *student)
-{
+bool    addUser(struct s_student *head)
+{  
+    struct s_student *new_student = malloc(sizeof(struct s_student)); // allocate storage space
+
+    new_student->nachname = malloc(sizeof(char) * 100);
+
+    new_student->matrikelnummer = malloc(sizeof(char) * 10);
+
+    if (new_student == NULL || new_student->nachname == NULL || new_student->matrikelnummer == NULL) 
+        return (false);
+
+    input_student(new_student);
+
+    printf("Student wurde angelegt: %s\n", new_student->nachname);  
+    
+    // printError("User wurde hinzugefuegt.\n");
+
+    head->next = new_student;
+    
+
     return (true);
 }
 
@@ -74,22 +93,18 @@ bool nachName_is_Set(struct s_student *s)
 
     if (s->nachname[0] == '\0'
     || string_only_space(s->nachname))
-    {
-        return false;
-    }
-    return true;
-}
+
 
 bool matrikelnummer_is_Set(struct s_student *s)
 {
     //printf("%p\n",s->matrikelnummer); //test
     if (s->matrikelnummer[0] == '\0'
     || string_only_space(s->matrikelnummer))
-    {
-        return false;
-    }
-    return true;
+=======
+    */
+    return false;
 }
+
 
 bool s_datum_is_Set(struct s_datum d)
 {
@@ -103,31 +118,35 @@ bool date_is_same_or_later(struct s_datum d1, struct s_datum d2)
     if(d1.jahr >  d2.jahr
     || d1.jahr == d2.jahr && d1.monat >  d2.monat
     || d1.jahr == d2.jahr && d1.monat == d2.monat && d1.tag > d2.tag)
+
     {
         return 0;
     }
     return 1;
-}
 
 bool startDatum_is_Set(struct s_student *s)
 {
     if (s_datum_is_Set(s->startDatum)
     && date_is_same_or_later(s->geburtsDatum, s-> startDatum)) //gebdate vor startdate
+
     {
         return 1;
     }
     return 0;
 }
 
+
 bool endDatum_is_Set(struct s_student *s)
 {
     if (s_datum_is_Set(s->endDatum)
     && date_is_same_or_later(s->startDatum, s->endDatum)) //startdate vor enddate
+
     {
         return 1;
     }
     return 0;
 }
+  
 bool geburtsDatum_is_Set(struct s_student *s)
 {
     if (s_datum_is_Set(s->geburtsDatum))
@@ -148,29 +167,29 @@ bool All_values_Set(struct s_student *s)
     && geburtsDatum_is_Set(s);
 }
 
-struct s_datum setdatum(char *info)
-{ //Info beinhaltet Grund des Datums
+struct s_datum setdatum(char *info) { //Info beinhaltet Grund des Datums
     printf("%s%s", info, " eingeben:\n\n");
+
     struct s_datum d;
 
     char input[10]; // Max 10 Zeichen für input -> Max mögliche Jahreszahl = 9999999999
 
     // Einlesen der Daten für den Tag
-    printf("Bitte geben Sie den Tag ein (1 - 31): ");
+    printf("Tag (1 - 31): ");
     fgets(input, sizeof(input), stdin);
     d.tag = atoi(input) > 0 && atoi(input) <= 31 ? atoi(input) : 0;
     if(!d.tag)
         return d;
 
     // Einlesen der Daten für den Monat
-    printf("Bitte geben Sie den Monat ein (1 - 12): ");
+    printf("Monat (1-12): ");
     fgets(input, sizeof(input), stdin);
     d.monat = atoi(input) > 0 && atoi(input) <= 12 ? atoi(input) : 0;
     if(!d.monat)
         return d;
 
     // Einlesen der Daten für das Jahr
-    printf("Bitte geben Sie das Jahr ein: ");
+    printf("Jahr (> 0): ");
     fgets(input, sizeof(input), stdin);
     d.jahr = atoi(input);// > 0 ? atoi(input) : 0;
     if(!d.jahr)
@@ -260,7 +279,8 @@ void student_input(struct s_student *s)
             printf("\033[2J\033[H");
         }*/
 
-    } while (!All_values_Set(s)); // Redu bis alle Werte gesetzt sind
+    } while (!All_values_Set(s)); // Redo bis alle Werte gesetzt sind
 
     printf("%s", s->nachname);
 }
+
