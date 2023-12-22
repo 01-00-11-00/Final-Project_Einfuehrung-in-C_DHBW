@@ -5,10 +5,11 @@ bool student_create(struct s_student **student)
 {
     struct s_student *tmp = malloc(sizeof(struct s_student)); // allocate storage space
     tmp->nachname = malloc(sizeof(char) * 100);
-    
     if (tmp == NULL || tmp->nachname == NULL) 
         return (false);
-    
+  
+    tmp->nachname = (char*) malloc(sizeof(char));
+    tmp->matrikelnummer = (char*) malloc(sizeof(char));
     *student = tmp;
 
     return (true);
@@ -16,12 +17,16 @@ bool student_create(struct s_student **student)
 
 bool    student_program(struct s_student *student)
 {
+    //student_input(student); //nur zum testen
+
     int wahl, read, ret_code;
 
+    // loadingScreen();
     while (true)
     {
+        system("clear");
         printMenu();
-        
+      
         char buf[100]; // use 1/100KB just to be sure
 
         do
@@ -48,8 +53,17 @@ bool    student_program(struct s_student *student)
                 printList(student);
                 break;
             case 4:
-                printf("%d\n", number_of_students(student));
-            case 5: // end program 
+                ret_code = number_of_students(student);
+                break;
+            case 5:
+                ret_code = student_info_print_one(student);
+            case 6:
+                ret_code = student_info_print_all(student);
+            case 7:
+                ret_code = student_info_write(student);
+            case 8:
+                ret_code = student_info_read(student);
+            case 9: // end program 
                 return (true);
             default:
                 printError("Eingabe nicht korrekt. :(\n");
@@ -61,14 +75,14 @@ bool    student_program(struct s_student *student)
 }
 
 // delete the student
-void    student_destroy(struct s_student *student)
+void    student_destroy(struct s_student **student)
 {
     struct s_student *tmp;
 
     while (!student)
     {
-        tmp = student;
-        student = student->next;
+        tmp = *student;
+        *student = (*student)->next;
         free(tmp);
         // TODO Free strings 
     }
