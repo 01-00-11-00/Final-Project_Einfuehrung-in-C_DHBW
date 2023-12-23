@@ -47,13 +47,15 @@ bool    addUser(struct s_student *head)
     if (new_student == NULL || new_student->nachname == NULL || new_student->matrikelnummer == NULL) 
         return (false);
 
+
     input_student(new_student);
 
-    printf("Student wurde angelegt: %s\n", new_student->nachname);  
+    printError("Student wurde angelegt.");  
     
     // printError("User wurde hinzugefuegt.\n");
 
-    head->next = new_student;
+    
+    insert_student(head, new_student);
     
 
     return (true);
