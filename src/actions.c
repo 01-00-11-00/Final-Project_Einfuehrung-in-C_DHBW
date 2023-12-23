@@ -48,7 +48,9 @@ bool    addUser(struct s_student *head)
         return (false);
 
 
-    printf("Student wurde angelegt: %s\n", new_student->nachname);  
+    input_student(new_student);
+
+    printError("Student wurde angelegt.");  
     
     // printError("User wurde hinzugefuegt.\n");
 

@@ -1,6 +1,5 @@
 #include "../include/student.h"
-#include<unistd.h>
-// create the student array
+
 bool student_create(struct s_student **student)
 {
     struct s_student *tmp = malloc(sizeof(struct s_student)); // allocate storage space
@@ -20,7 +19,9 @@ bool    student_program(struct s_student *student)
 {
     //student_input(student); //nur zum testen
 
-    int wahl, read, ret_code;
+    int wahl;
+    
+    int ret_code;
 
     // loadingScreen();
     while (true)
@@ -28,23 +29,25 @@ bool    student_program(struct s_student *student)
         system("clear");
         printMenu();
         
-        char buf[100]; // use 1/100KB just to be sure
-        memset(buf, 0, 100); // clear the buffer before reading
+        char buf[10]; // use 1/100KB just to be sure
+        memset(buf, 0, 10); // clear the buffer before reading
 
         do
-        {
-            printf("> ");
-            if (!fgets(buf, 100, stdin))
-            {
-                // reading input failed, give up:
-                return 1;
-            }
-
-            for(int i = 0; i < 100; i++) {
+       {
+            //int test = getchar(); // clear stdin
+            // printf("test: %d\n", test); 
+            
+            if(fgets(buf, 10, stdin) == NULL) {
+                printf("fgets failed\n");
+            }; // read from stdin
+            printf("read");
+            for(int i = 0; i < 10; i++) {
                 printf("%d", buf[i]);
             }
+            printf("\n");
 
             // have some input, convert it to integer:
+            char * end;
             wahl = atoi(buf);
             printf("wahl: %d\n", wahl);
         } while (wahl == 0); // repeat until we got a valid number
@@ -65,7 +68,7 @@ bool    student_program(struct s_student *student)
                 ret_code = number_of_students(student);
                 break;
             case 5:
-                ret_code = student_info_print_one(student);
+                ret_code = input_student(student);
             case 6:
                 ret_code = student_info_print_all(student);
             case 7:
