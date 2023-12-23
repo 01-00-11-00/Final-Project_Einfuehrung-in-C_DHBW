@@ -43,9 +43,9 @@ void    printMenu()
     print_middle(".---------------------------------------------.\n", i++);
     print_middle("|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|\n", i++);
     print_middle("|xx.---------------------------------------.xx|\n", i++);
-    print_middle("|xx|  Herzlich Willkom bei Student Appp!   |xx|\n", i++);
+    print_middle("|xx|  Herzlich Willkomen bei Student Appp! |xx|\n", i++);
     print_middle("|xx|  Wie kann ich Ihnen Helfen ?          |xx|\n", i++);
-    print_middle("|xx|\t1- Neue User Hinzufuegen.       |xx|\n", i++);    
+    print_middle("|xx|\t1- Neuen User Hinzufuegen.      |xx|\n", i++);    
     print_middle("|xx|\t2- Ein User Loeschen.           |xx|\n", i++);    
     print_middle("|xx|\t3- Print User's Information.    |xx|\n", i++);
     print_middle("|xx|\t4- Number of users.             |xx|\n", i++);
@@ -95,7 +95,17 @@ void    printHr()
         printf("=");
         i++;
     }
-    printf(">\n");
+}
+
+bool string_only_space(char *str)
+{
+    int i = 0;
+    while(str[i] != '\0'){
+        if(str[i] != ' ')
+            return false;
+        i++;
+    }
+    return true;
 }
 
 // TODO !

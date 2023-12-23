@@ -31,7 +31,7 @@ bool    removeUser(struct s_student *student);
 void    printList(struct s_student *student);
 int     number_of_students(struct s_student *student);
 
-void    student_insert(struct s_student *head, struct s_student *student);
+void    insert_student(struct s_student *head, struct s_student *student);
 void    student_input(struct s_student *s);
 
 int     student_info_print_one(struct s_student *student);
@@ -47,10 +47,11 @@ void    student_destroy(struct s_student **student);
 
 // utils.c
 
-void    student_insert(struct s_student *head, struct s_student *student);
+// void    student_insert(struct s_student *head, struct s_student *student);
 void    printError(char *str);
 void    printMenu();
 void    printHr();
 void    getString(char *buf, char *prompt, int len);
 void    loadingScreen();
 void    print_middle(char *str, int line);
+bool    string_only_space(char *str);

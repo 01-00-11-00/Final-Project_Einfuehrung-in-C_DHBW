@@ -2,3 +2,5 @@
 **/*.o
 student_app
 .idea/*
+
+.gdb_history
