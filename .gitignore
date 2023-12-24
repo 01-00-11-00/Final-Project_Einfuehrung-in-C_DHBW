@@ -4,3 +4,4 @@ student_app
 .idea/*
 
 .gdb_history
+student_export.csv

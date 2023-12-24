@@ -40,6 +40,28 @@ void import_students(StudentList *list) {
     getchar();
 }
 
+int export_students(StudentList *list) {
+    const char filename[] = "students_export.csv";
+    FILE *file = fopen(filename, "w");
+
+    if (file == NULL) {
+        printf("Datei konnte nicht geöffnet werden %s\n", filename);
+        return false;
+    }
+
+    fprintf(file, "Nachname,Matrikelnummer,Geburtsdatum,Startdatum,Enddatum\n");
+
+    struct s_student *tmp = list->head;
+
+    while (tmp != NULL) {
+        fprintf(file, "%s,%s,%d.%d.%d,%d.%d.%d,%d.%d.%d\n", tmp->nachname, tmp->matrikelnummer, tmp->geburtsDatum.tag, tmp->geburtsDatum.monat, tmp->geburtsDatum.jahr, tmp->startDatum.tag, tmp->startDatum.monat, tmp->startDatum.jahr, tmp->endDatum.tag, tmp->endDatum.monat, tmp->endDatum.jahr);
+        tmp = tmp->next;
+    }
+
+    fclose(file);
+    return true;
+}
+
 
 bool    student_program( StudentList *list)
 {
@@ -73,28 +95,21 @@ bool    student_program( StudentList *list)
                 ret_code = addUser(list);
                 break;
             case 2:
-                ret_code = removeUser(list);
+                //ret_code = printStudent(list);
                 break;
             case 3:
-                //ret_code = printList(student);
-
+                ret_code = removeUser(list);
                 break;
             case 4:
                 ret_code = number_of_students(list);
                 break;
             case 5:
-                ret_code = input_student(student);
-            case 6:
                 ret_code = student_list_print(list);
-                printf("Retrun code: %d\n", ret_code);
                 break;
-            case 7:
-                ret_code = student_info_write(student);
+            case 6: // end program 
+                ret_code = export_students(list);
                 break;
-            case 8:
-                ret_code = student_info_read(student);
-                break;
-            case 9: // end program 
+            case 7: // end program 
                 return (true);
             default:
                 printError("Eingabe nicht korrekt. :(\n");
