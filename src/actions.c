@@ -68,6 +68,51 @@ bool    addUser(StudentList *list)
     return (true);
 }
 
+bool printStudent(StudentList *list) {
+    system("clear");
+    if (list->size == 0 || list->head == NULL)
+    {
+        printError("Keine Studenten vorhanden.");
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();  
+        return (true);
+    }
+    
+    char matrikelnummer[10];
+    printf("Matrikelnummer eingeben: ");
+    getString_local(matrikelnummer, 10);
+    
+    struct s_student *tmp = list->head;
+
+    if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+    {
+        student_info_print_one(tmp);
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();
+        return (true);
+    }
+
+    while(tmp->next != NULL) {
+        if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+        {
+            student_info_print_one(tmp);
+            printf("Enter drücken, um fortzufahren\n");
+            getchar();
+            return (true);
+        }
+        tmp = tmp->next;
+    }
+
+    if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+    {
+        student_info_print_one(tmp);
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();
+        return (true);
+    }
+    
+}
+
 /* User suchen und Loeschen */
 bool removeStudent(StudentList *list)
 {

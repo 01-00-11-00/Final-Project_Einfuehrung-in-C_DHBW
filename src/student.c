@@ -138,7 +138,7 @@ bool    student_program( StudentList *list)
                 ret_code = addUser(list);
                 break;
             case 2:
-                //ret_code = printStudent(list);
+                ret_code = printStudent(list);
                 break;
             case 3:
                 ret_code = removeStudent(list);
