@@ -2,15 +2,15 @@ Finale Aufgabe
 
 Das Programm soll eine Liste von Studenten verarbeiten
 
-Erstelle eine Studenten Struktur mit folgenden Inhalten: Nachname, Matrikelnummer, Start Datum, End Datum, geburstdatum
+DONE    Erstelle eine Studenten Struktur mit folgenden Inhalten: Nachname, Matrikelnummer, Start Datum, End Datum, geburstdatum
 
-Erstelle eine Datums Struktur (day month year) fuer das gebursdatum und einschreibungsdatum etc.
+DONE    Erstelle eine Datums Struktur (day month year) fuer das gebursdatum und einschreibungsdatum etc.
 
-Schreibe eine Funktion inputStudent: Bei dem der Benutzer alle relevanten Daten zu einem Studenten eingeben kann.
+DONE    Schreibe eine Funktion inputStudent: Bei dem der Benutzer alle relevanten Daten zu einem Studenten eingeben kann.
 
-Schreibe eine Funktion addStudent: bei der ein Student hinzugefügt wird.
+DONE    Schreibe eine Funktion addStudent: bei der ein Student hinzugefügt wird.
 
-Schreibe eine Funktion in der die Anzahl der gespeicherten Studenten zurueck gegeben werden soll.
+DONE    Schreibe eine Funktion in der die Anzahl der gespeicherten Studenten zurueck gegeben werden soll.
 
 Schreibe eine Funktion printStudent(Matrikelnummer), mit der ein Student auf dem Bildschirm ausgegeben werden soll
 
