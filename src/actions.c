@@ -229,7 +229,7 @@ void input_student(struct s_student *s)
         {
             printf("\033[2J\033[H");
             printf("%s",heading);
-            s->geburtsDatum = setdatum("Geburtsdatumd");
+            s->geburtsDatum = setdatum("Geburtsdatum");
             if(!geburtsDatum_is_Set(s))
             {
                 printf("Geburtsdatum ungültig! Bitte versuchen Sie es erneut und beachten Sie die richtige Reihenfolge der Datums.");
