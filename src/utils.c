@@ -60,7 +60,7 @@ void    printMenu()
     print_middle("                |xxxxxxxxxxxxx|\n", i++);
     print_middle("               /xxxxxxxxxxxxxxx\\\n", i++);
     print_middle("              |xxxxxxxxxxxxxxxxx|\n", i++);
-    printf("\033[18;38H");
+    printf("\033[17;38H");
 }
 
 void    chomp(char *s)
