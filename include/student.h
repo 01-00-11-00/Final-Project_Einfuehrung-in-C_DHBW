@@ -28,7 +28,7 @@ struct s_student {
 
 // actions.c
 bool    addUser(StudentList *list);
-bool    removeUser(StudentList *list);
+bool    removeStudent(StudentList *list);
 int     printList(StudentList *list);
 int     number_of_students(StudentList *list);
 

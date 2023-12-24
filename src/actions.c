@@ -21,6 +21,7 @@ int     student_info_print_one(struct s_student *student)
     printf("Geburtsdatum: %d.%d.%d\n", student->geburtsDatum.tag, student->geburtsDatum.monat, student->geburtsDatum.jahr);
     printf("Startdatum: %d.%d.%d\n", student->startDatum.tag, student->startDatum.monat, student->startDatum.jahr);
     printf("Enddatum: %d.%d.%d\n", student->endDatum.tag, student->endDatum.monat, student->endDatum.jahr);
+    printf("next = %p\n", student->next);
     printf("\n");
     return (true);
 }
@@ -68,7 +69,7 @@ bool    addUser(StudentList *list)
 }
 
 /* User suchen und Loeschen */
-bool removeUser(StudentList *list)
+bool removeStudent(StudentList *list)
 {
     system("clear");
     if (list->size == 0 || list->head == NULL)
@@ -99,6 +100,7 @@ bool removeUser(StudentList *list)
 
 
     while(tmp->next != NULL) {
+        printf("[%s] == [%s]\n", tmp->matrikelnummer, matrikelnummer);
         if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
         {
             prev->next = tmp->next;
@@ -109,8 +111,21 @@ bool removeUser(StudentList *list)
             getchar();
             return (true);
         }
-        tmp = tmp->next;
         prev = tmp;
+        tmp = tmp->next;
+    }
+
+    printf("last student: [%s]\n", tmp->matrikelnummer);
+    if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+    {
+        printf("last student: [%s]\n", prev->matrikelnummer);
+        prev->next = NULL;
+        list->size--;
+        student_destroy(tmp);
+        printError("Student wurde gelöscht.");
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();
+        return (true);
     }
 
     printError("Student nicht gefunden.");

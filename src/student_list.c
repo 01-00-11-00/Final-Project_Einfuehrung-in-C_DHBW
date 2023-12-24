@@ -16,11 +16,12 @@ bool student_list_print(StudentList *list)
     
     struct s_student *tmp = list->head;    
 
-    while (tmp != NULL)
+    while (tmp->next != NULL)
     {
         student_info_print_one(tmp);
         tmp = tmp->next;
     }
+    student_info_print_one(tmp);
 
     printError("Enter drücken, um fortzufahren\n");
     getchar();    

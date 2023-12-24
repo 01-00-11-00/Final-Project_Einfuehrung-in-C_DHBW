@@ -1,4 +1,5 @@
 #include "../include/student.h"
+#include <ctype.h>
 
 void loadingScreen()
 {
@@ -113,3 +114,4 @@ bool string_only_space(char *str)
 //     printf("\33[2K\r");
 //     usleep(500000);
 // }
+
