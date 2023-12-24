@@ -90,6 +90,7 @@ bool removeUser(StudentList *list)
     {
         list->head = tmp->next;
         list->size--;
+        student_destroy(tmp);
         printError("Student wurde gelöscht.");
         printf("Enter drücken, um fortzufahren\n");
         getchar();
@@ -102,6 +103,7 @@ bool removeUser(StudentList *list)
         {
             prev->next = tmp->next;
             list->size--;
+            student_destroy(tmp);
             printError("Student wurde gelöscht.");
             printf("Enter drücken, um fortzufahren\n");
             getchar();
