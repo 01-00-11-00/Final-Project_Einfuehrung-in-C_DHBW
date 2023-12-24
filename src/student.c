@@ -124,3 +124,13 @@ void    insert_student(struct s_student *head, struct s_student *student)
     }
 
 }
+
+/*void student_info_print_all(struct s_student **students, int num_students) {
+    for (int i = 0; i < num_students; ++i) {
+        printf("Student %d:\n", i + 1);
+        printf("Nachname: %s\n", students[i]->nachname);
+        printf("Matrikelnummer: %s\n", students[i]->matrikelnummer);
+        printf("\n");
+    }
+}
+*/
