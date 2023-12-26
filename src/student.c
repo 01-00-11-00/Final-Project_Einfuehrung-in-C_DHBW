@@ -44,12 +44,14 @@ char *trim_string(char *str)
 bool student_create(struct s_student **student)
 {
     struct s_student *tmp = malloc(sizeof(struct s_student)); // allocate storage space
+    
     tmp->nachname = malloc(sizeof(char) * 100);
     if (tmp == NULL || tmp->nachname == NULL) 
         return (false);
   
     tmp->nachname = (char*) malloc(sizeof(char));
     tmp->matrikelnummer = (char*) malloc(sizeof(char));
+    tmp->next = NULL;
     *student = tmp;
 
     return (true);
@@ -65,12 +67,13 @@ void import_students(StudentList *list)
         return;
     }
     printf("Importiere Studenten...\n");
-    loadingScreen();
+    // loadingScreen();
     fscanf(file, "%*[^\n]\n");
     while (!feof(file)) {
         struct s_student *student = malloc(sizeof(struct s_student));
         student->nachname = malloc(sizeof(char) * 100);
         student->matrikelnummer = malloc(sizeof(char) * 10);
+        student->next = NULL;
         fscanf(file, "%[^,],%[^,],%d.%d.%d,%d.%d.%d,%d.%d.%d\n", student->nachname, student->matrikelnummer, &student->geburtsDatum.tag, &student->geburtsDatum.monat, &student->geburtsDatum.jahr, &student->startDatum.tag, &student->startDatum.monat, &student->startDatum.jahr, &student->endDatum.tag, &student->endDatum.monat, &student->endDatum.jahr);
         insert_student(list, student);
         
