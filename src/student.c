@@ -55,7 +55,8 @@ bool student_create(struct s_student **student)
     return (true);
 }
 
-void import_students(StudentList *list) {
+void import_students(StudentList *list)
+{
     const char filename[] = "students.csv";
     FILE *file = fopen(filename, "r");
 
@@ -83,24 +84,25 @@ void import_students(StudentList *list) {
     getchar();
 }
 
-int export_students(StudentList *list) {
-    const char filename[] = "students_export.csv";
-    FILE *file = fopen(filename, "w");
+int export_students(StudentList *list)
+{
+    const char          *filename = "students_export.csv";
+    FILE                *file = fopen(filename, "w");
+    struct s_student    *tmp = list->head;
 
+    system("clear");
     if (file == NULL) {
         printf("Datei konnte nicht geöffnet werden %s\n", filename);
         return false;
     }
-
     fprintf(file, "Nachname,Matrikelnummer,Geburtsdatum,Startdatum,Enddatum\n");
-
-    struct s_student *tmp = list->head;
-
     while (tmp != NULL) {
         fprintf(file, "%s,%s,%d.%d.%d,%d.%d.%d,%d.%d.%d\n", tmp->nachname, tmp->matrikelnummer, tmp->geburtsDatum.tag, tmp->geburtsDatum.monat, tmp->geburtsDatum.jahr, tmp->startDatum.tag, tmp->startDatum.monat, tmp->startDatum.jahr, tmp->endDatum.tag, tmp->endDatum.monat, tmp->endDatum.jahr);
         tmp = tmp->next;
     }
-
+    printf("\033[5;35HExportiert!\n");
+    printf("\033[35;10HEnter drücken, um fortzufahren\n");
+    getchar();
     fclose(file);
     return true;
 }
@@ -138,7 +140,7 @@ bool    student_program( StudentList *list)
                 ret_code = addUser(list);
                 break;
             case 2:
-                ret_code = printStudent(list);
+                ret_code = student_find(list);
                 break;
             case 3:
                 ret_code = removeStudent(list);
@@ -152,7 +154,8 @@ bool    student_program( StudentList *list)
             case 6: // end program 
                 ret_code = export_students(list);
                 break;
-            case 7: // end program 
+            case 7: // end program
+                system("clear");
                 return (true);
             default:
                 printError("Eingabe nicht korrekt. :(\n");

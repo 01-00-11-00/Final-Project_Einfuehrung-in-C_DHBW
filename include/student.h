@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "student_list.h"
 
 static int     g_line = 24;
@@ -28,12 +29,13 @@ struct s_student {
 
 // actions.c
 bool    addUser(StudentList *list);
+bool    printStudent(StudentList *list);
 bool    removeStudent(StudentList *list);
-int     printList(StudentList *list);
+bool    student_find(StudentList *list);
 int     number_of_students(StudentList *list);
 
 void    insert_student(StudentList *list, struct s_student *student);
-int    input_student(struct s_student *s);
+int     input_student(struct s_student *s);
 
 int     student_info_print_one(struct s_student *student);
 int     student_info_print_all(struct s_student *student);
