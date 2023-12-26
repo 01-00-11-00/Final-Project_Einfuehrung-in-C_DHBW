@@ -28,19 +28,21 @@ This repository contains the final exam of Einführung in C DHBW.
 
 ## Anwendung:
 
-Um das Projekt zu erstellen und die ausführbare Datei zu erzeugen, führen Sie:
+Um das Projekt zu erstellen und die ausführbare Datei zu erzeugen, führen Sie
 ```
 	make
 ```
-Um alle erzeugten .o-Dateien zu löschen, führen Sie :
+aus.  
+Um alle erzeugten .o-Dateien zu löschen, führen Sie
 ```
 	make clean
 ```
-
-Um alle erzeugten .o-Dateien und die ausführbare Datei zu löschen, führen Sie :
+aus.  
+Um alle erzeugten .o-Dateien und die ausführbare Datei zu löschen, führen Sie
 ```
 	make fclean
-``` 
+```
+aus.  
 
 ## src/student.c
 
@@ -95,11 +97,8 @@ Diese Funktion fordert den Benutzer auf, eine Zeichenkette einzugeben, indem sie
 ### Funktion printError:
 Diese Funktion gibt eine Fehlermeldung auf dem Standardfehlerausgabekanal (stderr) aus. Die Funktion verwendet dprintf(2, "%s", str), um die Fehlermeldung auf dem Standardfehlerausgabekanal zu drucken.
 
-### Funktion printHr:
-Diese Funktion gibt eine horizontale Linie auf der Konsole aus. Die Länge der Linie beträgt 40 Zeichen, und sie besteht aus '='-Zeichen.
-
 ### Funktion string_only_space:
-Diese Funktion überprüft, ob der übergebene String str ausschließlich aus Leerzeichen besteht. Wenn der String nur Leerzeichen enthält, gibt die Funktion true zurück; sonst gibt sie false zurück.
+Diese Funktion überprüft, ob der übergebene String str ausschließlich aus Leerzeichen besteht. Wenn der String nur Leerzeichen enthält, gibt die Funktion true zurück, ansonsten false.
 
 ## src/actions.c
 
@@ -113,7 +112,7 @@ Diese Funktion liest eine Zeichenkette von der Konsole ein und gibt sie als Stri
 Diese Funktion gibt die Informationen eines Studenten auf der Konsole aus. Falls der übergebene Student NULL ist, wird nichts ausgegeben.
 
 ### Funktion addStudent:
-Diese Funktion allokiert dynamisch Speicher für einen neuen Studenten und fügt ihn am Ende der Studentenliste list ein. Dafür wird dei Funktion insert_student verwendet. Falls die Speicherzuweisung fehlschlägt, wird false zurückgegeben, sonst true.
+Diese Funktion allokiert dynamisch Speicher für einen neuen Studenten und fügt ihn am Ende der Studentenliste list ein. Dafür wird dei Funktion insert_student verwendet. Falls die Speicherzuweisung fehlschlägt, wird false zurückgegeben, ansonsten true.
 
 ### Funktion printStudent:
 Diese Funktion fragt nach einer Matrikelnummer mit der Funktion getString_local und gibt die Informationen des Studenten mit dieser Matrikelnummer auf der Konsole aus. Falls die Matrikelnummer nicht gefunden wird, wird eine entsprechende Meldung ausgegeben. Auch wird eine Meldung ausgegeben, falls die Liste leer ist.
@@ -131,7 +130,6 @@ Diese Funktion prüft, ob der Nachname eines Studenten gesetzt ist.
 ### Funktion matrikelnummer_is_Set:
 Diese Funktion prüft, ob die Matrikelnummer eines Studenten gesetzt ist.
 
-
 ### Funktion s_datum_is_Set:
 Diese Funktion prüft, ob ein Beliebiges Datum eines Studenten gesetzt ist.
 
@@ -144,11 +142,11 @@ Diese Funktion prüft, ob das Eintrittsdatum eines Studenten gesetzt ist.
 ### Funktion geburtsDatum_is_Set:
 Diese Funktion prüft, ob das Geburtsdatum eines Studenten gesetzt ist.
 
-### Funktion All_values_Set:
-Diese Funktion prüft, ob alle Werte eines Studenten gesetzt sind.
-
 ### Funktion endDatum_is_Set:
 Diese Funktion prüft, ob das Austrittsdatum eines Studenten gesetzt ist.
+
+### Funktion All_values_Set:
+Diese Funktion prüft, ob alle Werte eines Studenten gesetzt sind. Hierfür werden die vorher genannten _is_Set Funktionen verwendet.
 
 ### Funktion setdatum:
 Diese Funktion ist eine utility Funktion, die ein Datum-struct mit den erstellt und zurückgibt. Die Funktion nimmt einen String entgegen, der dem Nutzer ausgibt, welches Datum er eingeben soll. Die Funktion nimmt dann die Eingabe des Nutzers entgegen und prüft, ob das Datum im richtigen Format eingegeben wurde. 
