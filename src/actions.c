@@ -74,7 +74,9 @@ bool printStudent(StudentList *list)
         tmp = tmp->next;
     }
     printf("\nStudent nicht gefunden\n");
-    return (false);
+    printf("\033[35;10HEnter drücken, um fortzufahren\n");
+    getchar();
+    return (true);
 }
 
 /* User suchen und Loeschen */
