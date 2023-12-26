@@ -66,8 +66,9 @@ void import_students(StudentList *list)
         printf("Could not open file %s\n", filename);
         return;
     }
+    system("clear");
     printf("Importiere Studenten...\n");
-    // loadingScreen();
+    loadingScreen();
     fscanf(file, "%*[^\n]\n");
     while (!feof(file)) {
         struct s_student *student = malloc(sizeof(struct s_student));
@@ -105,14 +106,36 @@ int export_students(StudentList *list)
     return true;
 }
 
+// Free all the allocated memory
+void    student_program_destroy(StudentList *list)
+{
+    if (list == NULL)
+        return;
 
-bool    student_program( StudentList *list)
+    struct s_student *current = list->head;
+    struct s_student *next;
+
+    while (current != NULL)
+    {
+        next = current->next;
+        free(current->nachname);
+        free(current->matrikelnummer);
+        free(current);
+        current = next;
+    }
+
+    list->head = NULL;
+    list->size = 0;
+    free(list);
+    list = NULL;
+}
+
+bool    student_program(StudentList *list)
 {
     int wahl, ret_code;
     char    buf[10]; // use 1/100KB just to be sure
 
     import_students(list);
-
     while (true)
     {
         system("clear");
@@ -145,6 +168,7 @@ bool    student_program( StudentList *list)
                 break;
             case 6: // end program
                 ret_code = export_students(list);
+                student_program_destroy(list);
                 system("clear");
                 return (true);
             default:
