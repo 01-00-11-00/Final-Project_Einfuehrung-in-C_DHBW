@@ -16,6 +16,9 @@ static void    getString_local(char *buf, int len)
 
 int     student_info_print_one(struct s_student *student)
 {
+    if (student == NULL)
+        return (false);
+
     printf("Nachname: %s\n", student->nachname);
     printf("Matrikelnummer: %s\n", student->matrikelnummer);
     printf("Geburtsdatum: %d.%d.%d\n", student->geburtsDatum.tag, student->geburtsDatum.monat, student->geburtsDatum.jahr);
@@ -129,7 +132,7 @@ bool deleteStudent(StudentList *list)
 int number_of_students(StudentList *list)
 {   
     system("clear");
-    printf("\033[5;35HThe number of students : %d\n", list->size);
+    printf("\033[5;35HAnzahl der Studenten: %d\n", list->size);
     printf("\033[35;10HEnter drücken, um fortzufahren\n");
     getchar();
     return (true);
