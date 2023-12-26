@@ -28,10 +28,9 @@ struct s_student {
 
 
 // actions.c
-bool    addUser(StudentList *list);
+bool    addStudent(StudentList *list);
 bool    printStudent(StudentList *list);
-bool    removeStudent(StudentList *list);
-bool    student_find(StudentList *list);
+bool    deleteStudent(StudentList *list);
 int     number_of_students(StudentList *list);
 
 void    insert_student(StudentList *list, struct s_student *student);
@@ -49,8 +48,6 @@ void    student_destroy(struct s_student *student);
 
 
 // utils.c
-
-// void    student_insert(struct s_student *head, struct s_student *student);
 void    printError(char *str);
 void    printMenu();
 void    printHr();

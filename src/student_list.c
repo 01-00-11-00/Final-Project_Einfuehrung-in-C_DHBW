@@ -2,7 +2,7 @@
 #include "../include/student.h"
 
 
-bool student_list_print(StudentList *list)
+bool printAllStudents(StudentList *list)
 {
     system("clear");
     

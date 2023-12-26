@@ -43,7 +43,7 @@ int     student_info_read(struct s_student *student)
 
 
 /* Muss ein User zu unsere Linked List hinzufuegen */
-bool    addUser(StudentList *list)
+bool    addStudent(StudentList *list)
 {  
     struct s_student *new_student = malloc(sizeof(struct s_student)); // allocate storage space
 
@@ -60,7 +60,7 @@ bool    addUser(StudentList *list)
     return (true);
 }
 
-bool student_find(StudentList *list)
+bool printStudent(StudentList *list)
 {
     char matrikelnummer[10];
     struct s_student *tmp = list->head;
@@ -90,8 +90,12 @@ bool student_find(StudentList *list)
 }
 
 /* User suchen und Loeschen */
-bool removeStudent(StudentList *list)
+bool deleteStudent(StudentList *list)
 {
+    char                matrikelnummer[10];
+    struct s_student    *tmp = list->head;
+    struct s_student    *prev = list->head;
+    
     system("clear");
     if (list->size == 0 || list->head == NULL)
     {
@@ -100,14 +104,8 @@ bool removeStudent(StudentList *list)
         getchar();  
         return (true);
     }
-    
-    char matrikelnummer[10];
     printf("Matrikelnummer eingeben: ");
     getString_local(matrikelnummer, 10);
-    
-    struct s_student *tmp = list->head;
-    struct s_student *prev = list->head;
-
     if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
     {
         list->head = tmp->next;
@@ -118,10 +116,8 @@ bool removeStudent(StudentList *list)
         getchar();
         return (true);
     }
-
-
-    while(tmp->next != NULL) {
-        printf("[%s] == [%s]\n", tmp->matrikelnummer, matrikelnummer);
+    while(tmp != NULL)
+    {
         if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
         {
             prev->next = tmp->next;
@@ -135,20 +131,6 @@ bool removeStudent(StudentList *list)
         prev = tmp;
         tmp = tmp->next;
     }
-
-    printf("last student: [%s]\n", tmp->matrikelnummer);
-    if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
-    {
-        printf("last student: [%s]\n", prev->matrikelnummer);
-        prev->next = NULL;
-        list->size--;
-        student_destroy(tmp);
-        printError("Student wurde gelöscht.");
-        printf("\033[35;10HEnter drücken, um fortzufahren\n");
-        getchar();
-        return (true);
-    }
-
     printError("Student nicht gefunden.");
 
     printf("\033[35;10HEnter drücken, um fortzufahren\n");

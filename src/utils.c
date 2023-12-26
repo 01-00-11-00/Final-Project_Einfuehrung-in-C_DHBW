@@ -51,8 +51,7 @@ void    printMenu()
     print_middle("|xx|\t3 - Studenten löschen           |xx|\n", i++);    
     print_middle("|xx|\t4 - Anzahl Studenten            |xx|\n", i++);
     print_middle("|xx|\t5 - Alle Studenten ausgeben     |xx|\n", i++);
-    print_middle("|xx|\t6 - Daten exportieren           |xx|\n", i++);
-    print_middle("|xx|\t7 - Programm beenden            |xx|\n", i++);
+    print_middle("|xx|\t6 - Programm beenden            |xx|\n", i++);
     print_middle("|xx|  >                                    |xx|\n", i++);
     print_middle("|xx*---------------------------------------*xx|\n", i++);
     print_middle("|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|\n", i++);
@@ -60,7 +59,7 @@ void    printMenu()
     print_middle("                |xxxxxxxxxxxxx|\n", i++);
     print_middle("               /xxxxxxxxxxxxxxx\\\n", i++);
     print_middle("              |xxxxxxxxxxxxxxxxx|\n", i++);
-    printf("\033[17;38H");
+    printf("\033[16;38H");
 }
 
 void    chomp(char *s)

@@ -57,19 +57,16 @@ bool student_create(struct s_student **student)
 
 void import_students(StudentList *list)
 {
-    const char filename[] = "students.csv";
-    FILE *file = fopen(filename, "r");
+    const char      *filename = "students.csv";
+    FILE            *file = fopen(filename, "r");
 
     if (file == NULL) {
         printf("Could not open file %s\n", filename);
         return;
     }
-
-    // Skip first line
+    printf("Importiere Studenten...\n");
     fscanf(file, "%*[^\n]\n");
-
     while (!feof(file)) {
-        printf("Importiere Studenten...\n");
         struct s_student *student = malloc(sizeof(struct s_student));
         student->nachname = malloc(sizeof(char) * 100);
         student->matrikelnummer = malloc(sizeof(char) * 10);
@@ -78,7 +75,7 @@ void import_students(StudentList *list)
         
         printf("Imported student %s\n", student->nachname);
         student->matrikelnummer =  trim_string(student->matrikelnummer);
-        student_info_print_one(student);
+        // student_info_print_one(student);
     }
     fclose(file);
     getchar();
@@ -100,9 +97,6 @@ int export_students(StudentList *list)
         fprintf(file, "%s,%s,%d.%d.%d,%d.%d.%d,%d.%d.%d\n", tmp->nachname, tmp->matrikelnummer, tmp->geburtsDatum.tag, tmp->geburtsDatum.monat, tmp->geburtsDatum.jahr, tmp->startDatum.tag, tmp->startDatum.monat, tmp->startDatum.jahr, tmp->endDatum.tag, tmp->endDatum.monat, tmp->endDatum.jahr);
         tmp = tmp->next;
     }
-    printf("\033[5;35HExportiert!\n");
-    printf("\033[35;10HEnter drücken, um fortzufahren\n");
-    getchar();
     fclose(file);
     return true;
 }
@@ -137,24 +131,22 @@ bool    student_program( StudentList *list)
         switch(wahl)
         {
             case 1:
-                ret_code = addUser(list);
+                ret_code = addStudent(list);
                 break;
             case 2:
-                ret_code = student_find(list);
+                ret_code = printStudent(list);
                 break;
             case 3:
-                ret_code = removeStudent(list);
+                ret_code = deleteStudent(list);
                 break;
             case 4:
                 ret_code = number_of_students(list);
                 break;
             case 5:
-                ret_code = student_list_print(list);
+                ret_code = printAllStudents(list);
                 break;
-            case 6: // end program 
+            case 6: // end program
                 ret_code = export_students(list);
-                break;
-            case 7: // end program
                 system("clear");
                 return (true);
             default:

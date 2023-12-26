@@ -1,4 +1,5 @@
 #pragma once
+
 #include <stdbool.h>
 
 struct s_student_list
@@ -11,5 +12,5 @@ typedef struct s_student_list StudentList;
 
 
 StudentList *student_list_create();
-void student_list_destroy(StudentList *list);
-bool student_list_print(StudentList *list);
+void        student_list_destroy(StudentList *list);
+bool        printAllStudents(StudentList *list);
