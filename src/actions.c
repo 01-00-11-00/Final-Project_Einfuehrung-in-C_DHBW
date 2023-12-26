@@ -16,6 +16,13 @@ static void    getString_local(char *buf, int len)
 
 int     student_info_print_one(struct s_student *student)
 {
+    printf("Nachname: %s\n", student->nachname);
+    printf("Matrikelnummer: %s\n", student->matrikelnummer);
+    printf("Geburtsdatum: %d.%d.%d\n", student->geburtsDatum.tag, student->geburtsDatum.monat, student->geburtsDatum.jahr);
+    printf("Startdatum: %d.%d.%d\n", student->startDatum.tag, student->startDatum.monat, student->startDatum.jahr);
+    printf("Enddatum: %d.%d.%d\n", student->endDatum.tag, student->endDatum.monat, student->endDatum.jahr);
+    printf("next = %p\n", student->next);
+    printf("\n");
     return (true);
 }
 
@@ -36,7 +43,7 @@ int     student_info_read(struct s_student *student)
 
 
 /* Muss ein User zu unsere Linked List hinzufuegen */
-bool    addUser(struct s_student *head)
+bool    addUser(StudentList *list)
 {  
     struct s_student *new_student = malloc(sizeof(struct s_student)); // allocate storage space
 
@@ -55,50 +62,134 @@ bool    addUser(struct s_student *head)
     // printError("User wurde hinzugefuegt.\n");
 
     
-    insert_student(head, new_student);
+    insert_student(list, new_student);
     
 
     return (true);
 }
 
+bool printStudent(StudentList *list) {
+    system("clear");
+    if (list->size == 0 || list->head == NULL)
+    {
+        printError("Keine Studenten vorhanden.");
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();  
+        return (true);
+    }
+    
+    char matrikelnummer[10];
+    printf("Matrikelnummer eingeben: ");
+    getString_local(matrikelnummer, 10);
+    
+    struct s_student *tmp = list->head;
+
+    if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+    {
+        student_info_print_one(tmp);
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();
+        return (true);
+    }
+
+    while(tmp->next != NULL) {
+        if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+        {
+            student_info_print_one(tmp);
+            printf("Enter drücken, um fortzufahren\n");
+            getchar();
+            return (true);
+        }
+        tmp = tmp->next;
+    }
+
+    if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+    {
+        student_info_print_one(tmp);
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();
+        return (true);
+    }
+    
+}
+
 /* User suchen und Loeschen */
-bool removeUser(struct s_student *student)
+bool removeStudent(StudentList *list)
 {
+    system("clear");
+    if (list->size == 0 || list->head == NULL)
+    {
+        printError("Keine Studenten vorhanden.");
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();  
+        return (true);
+    }
+    
+    char matrikelnummer[10];
+    printf("Matrikelnummer eingeben: ");
+    getString_local(matrikelnummer, 10);
+    
+    struct s_student *tmp = list->head;
+    struct s_student *prev = list->head;
+
+    if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+    {
+        list->head = tmp->next;
+        list->size--;
+        student_destroy(tmp);
+        printError("Student wurde gelöscht.");
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();
+        return (true);
+    }
+
+
+    while(tmp->next != NULL) {
+        printf("[%s] == [%s]\n", tmp->matrikelnummer, matrikelnummer);
+        if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+        {
+            prev->next = tmp->next;
+            list->size--;
+            student_destroy(tmp);
+            printError("Student wurde gelöscht.");
+            printf("Enter drücken, um fortzufahren\n");
+            getchar();
+            return (true);
+        }
+        prev = tmp;
+        tmp = tmp->next;
+    }
+
+    printf("last student: [%s]\n", tmp->matrikelnummer);
+    if (strcmp(tmp->matrikelnummer, matrikelnummer) == 0)
+    {
+        printf("last student: [%s]\n", prev->matrikelnummer);
+        prev->next = NULL;
+        list->size--;
+        student_destroy(tmp);
+        printError("Student wurde gelöscht.");
+        printf("Enter drücken, um fortzufahren\n");
+        getchar();
+        return (true);
+    }
+
+    printError("Student nicht gefunden.");
+    
+
+    printf("Enter drücken, um fortzufahren\n");
+    getchar();
     return (true);
 }
 
-/* Muss Die Informationen Ueber jedes User schreiben */
-void printList(struct s_student *student)
-{
 
-}
 
 // return number of students
-int number_of_students(struct s_student *head)
-{
-    int                 num_students = 0;
-    int                 back;
-    struct s_student    *current_student = head;
-
-    // check if the current student is the last student
-    while (current_student != NULL)
-    {
-        num_students++;
-        current_student = current_student->next;
-    }
-    do {
-        system("clear");
-        printf("\033[5;35HThe number of students : %d\n", num_students);
-        printf("\033[35;10HPrint 1 if you want to go back !\n");
-        printf("\033[36;10H> ");
-        scanf("%d", &back);
-        if (back == 1)
-            break;
-        else
-            continue;
-    }
-    while (true);
-
+int number_of_students(StudentList *list)
+{   
+    system("clear");
+    printf("\033[5;35HThe number of students : %d\n", list->size);
+    printf("\033[35;10HEnter drücken, um fortzufahren\n");
+    getchar();
     return (true);
 }
 
@@ -192,7 +283,7 @@ struct s_datum setdatum(char *info) { //Info beinhaltet Grund des Datums
 
 // Eingabe der Daten eines Studenten
 // Leerer Student wird übergeben, befüllt und dann returned
-void input_student(struct s_student *s)
+int input_student(struct s_student *s)
 {
     printf("\033[2J\033[H");
     char heading[] = "----------     Neuen Studenten anlegen     ----------\n\n";
@@ -271,7 +362,6 @@ void input_student(struct s_student *s)
         }*/
 
     } while (!All_values_Set(s)); // Redo bis alle Werte gesetzt sind
-
-    printf("%s", s->nachname);
+    return true;
 }
 

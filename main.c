@@ -1,16 +1,21 @@
 #include "./include/student.h"
+#include "./include/student_list.h"
+
 
 int main(void)
 {
     struct s_student    *head;
+    StudentList         *list;
     bool                state;
+
+    list = student_list_create();
 
     state = true;
 
-    student_create(&head); // create the student array
+    //student_create(&head); // create the student array
 
 
-    if (student_program(head) == true) // checks if the program is running
+    if (student_program(list) == true) // checks if the program is running
     {
         state = false;
     }

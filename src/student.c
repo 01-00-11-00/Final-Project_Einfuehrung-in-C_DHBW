@@ -1,5 +1,46 @@
 #include "../include/student.h"
 
+char *trim_string(char *str)
+{
+    size_t len = 0;
+    char *frontp = str;
+    char *endp = NULL;
+
+    if( str == NULL ) { return NULL; }
+    if( str[0] == '\0' ) { return str; }
+
+    len = strlen(str);
+    endp = str + len;
+
+    /* Move the front and back pointers to address the first non-whitespace
+     * characters from each end.
+     */
+    while( isspace((unsigned char) *frontp) ) { ++frontp; }
+    if( endp != frontp )
+    {
+        while( isspace((unsigned char) *(--endp)) && endp != frontp ) {}
+    }
+
+    if( frontp != str && endp == frontp )
+            *str = '\0';
+    else if( str + len - 1 != endp )
+            *(endp + 1) = '\0';
+
+    /* Shift the string so that it starts at str so that if it's dynamically
+     * allocated, we can still free it on the returned pointer.  Note the reuse
+     * of endp to mean the front of the string buffer now.
+     */
+    endp = str;
+    if( frontp != str )
+    {
+            while( *frontp ) { *endp++ = *frontp++; }
+            *endp = '\0';
+    }
+
+    return str;
+}
+
+
 bool student_create(struct s_student **student)
 {
     struct s_student *tmp = malloc(sizeof(struct s_student)); // allocate storage space
@@ -14,16 +55,64 @@ bool student_create(struct s_student **student)
     return (true);
 }
 
+void import_students(StudentList *list) {
+    const char filename[] = "students.csv";
+    FILE *file = fopen(filename, "r");
 
-bool    student_program(struct s_student *student)
+    if (file == NULL) {
+        printf("Could not open file %s\n", filename);
+        return;
+    }
+
+    // Skip first line
+    fscanf(file, "%*[^\n]\n");
+
+    while (!feof(file)) {
+        printf("Importiere Studenten...\n");
+        struct s_student *student = malloc(sizeof(struct s_student));
+        student->nachname = malloc(sizeof(char) * 100);
+        student->matrikelnummer = malloc(sizeof(char) * 10);
+        fscanf(file, "%[^,],%[^,],%d.%d.%d,%d.%d.%d,%d.%d.%d\n", student->nachname, student->matrikelnummer, &student->geburtsDatum.tag, &student->geburtsDatum.monat, &student->geburtsDatum.jahr, &student->startDatum.tag, &student->startDatum.monat, &student->startDatum.jahr, &student->endDatum.tag, &student->endDatum.monat, &student->endDatum.jahr);
+        insert_student(list, student);
+        
+        printf("Imported student %s\n", student->nachname);
+        student->matrikelnummer =  trim_string(student->matrikelnummer);
+        student_info_print_one(student);
+    }
+    fclose(file);
+    getchar();
+}
+
+int export_students(StudentList *list) {
+    const char filename[] = "students_export.csv";
+    FILE *file = fopen(filename, "w");
+
+    if (file == NULL) {
+        printf("Datei konnte nicht geöffnet werden %s\n", filename);
+        return false;
+    }
+
+    fprintf(file, "Nachname,Matrikelnummer,Geburtsdatum,Startdatum,Enddatum\n");
+
+    struct s_student *tmp = list->head;
+
+    while (tmp != NULL) {
+        fprintf(file, "%s,%s,%d.%d.%d,%d.%d.%d,%d.%d.%d\n", tmp->nachname, tmp->matrikelnummer, tmp->geburtsDatum.tag, tmp->geburtsDatum.monat, tmp->geburtsDatum.jahr, tmp->startDatum.tag, tmp->startDatum.monat, tmp->startDatum.jahr, tmp->endDatum.tag, tmp->endDatum.monat, tmp->endDatum.jahr);
+        tmp = tmp->next;
+    }
+
+    fclose(file);
+    return true;
+}
+
+
+bool    student_program( StudentList *list)
 {
-    //student_input(student); //nur zum testen
+    int wahl, ret_code;
+    struct s_student *student;
 
-    int wahl;
-    
-    int ret_code;
+    import_students(list);
 
-    // loadingScreen();
     while (true)
     {
         system("clear");
@@ -33,94 +122,92 @@ bool    student_program(struct s_student *student)
         memset(buf, 0, 10); // clear the buffer before reading
 
         do
-       {
-            //int test = getchar(); // clear stdin
-            // printf("test: %d\n", test); 
-            
-            if(fgets(buf, 10, stdin) == NULL) {
-                printf("fgets failed\n");
-            }; // read from stdin
-            printf("read");
-            for(int i = 0; i < 10; i++) {
-                printf("%d", buf[i]);
+        {     
+            if(fgets(buf, 10, stdin) == NULL) // read from stdin 
+            { 
+                exit(1);
             }
-            printf("\n");
-
-            // have some input, convert it to integer:
-            char * end;
             wahl = atoi(buf);
-            printf("wahl: %d\n", wahl);
-        } while (wahl == 0); // repeat until we got a valid number
+        } 
+        while (wahl == 0); // repeat until we got a valid number
         
         
         switch(wahl)
         {
             case 1:
-                ret_code = addUser(student);
+                ret_code = addUser(list);
                 break;
             case 2:
-                ret_code = removeUser(student);
+                ret_code = printStudent(list);
                 break;
             case 3:
-                printList(student);
+                ret_code = removeStudent(list);
                 break;
             case 4:
-                ret_code = number_of_students(student);
+                ret_code = number_of_students(list);
                 break;
             case 5:
-                ret_code = input_student(student);
-            case 6:
-                ret_code = student_info_print_all(student);
-            case 7:
-                ret_code = student_info_write(student);
-            case 8:
-                ret_code = student_info_read(student);
-            case 9: // end program 
+                ret_code = student_list_print(list);
+                break;
+            case 6: // end program 
+                ret_code = export_students(list);
+                break;
+            case 7: // end program 
                 return (true);
             default:
                 printError("Eingabe nicht korrekt. :(\n");
         }
-        if (ret_code == false)
+        if (ret_code == false) {
+            printf("Error\n");
             return (false);
+        }
     }
     return (true);
 }
 
 // delete the student
-void    student_destroy(struct s_student **student)
+void    student_destroy(struct s_student *student)
 {
-    struct s_student *tmp;
-
-    while (!student)
-    {
-        tmp = *student;
-        *student = (*student)->next;
-        free(tmp);
-        // TODO Free strings 
-    }
-
+    if (student->nachname)
+        free(student->nachname);
+    if (student->matrikelnummer)
+        free(student->matrikelnummer);       
+    
+    free(student);
 }
 
-void    insert_student(struct s_student *head, struct s_student *student)
+void    insert_student(StudentList *list, struct s_student *student)
 {   
-    /*
-    Funktion funktioniert noch nicht. Wenn das Interface steht, kann weitergemacht werden. Insbesondere Studenten einlessen muss vorher implementiert werden.
+    // Überprüfen ob die Liste oder der Student leer ist
+    if (list == NULL || student == NULL)
+        return;
     
-    */
-    struct s_student *tmp;
-
-    tmp = head;
-
-
-
-    while (tmp->next != NULL) {
-        if (tmp->next->nachname[0] > student->nachname[0]) {
-            student->next = tmp->next;
-            tmp->next = student;
-            return;
-        } else {
-            tmp = tmp->next;
-        }
+    // Überprüfen ob die Liste leer ist
+    if (list->head == NULL)
+    {
+        list->head = student;
+        list->size++;
+        return;
+    }
+    
+    struct s_student* tmp = list->head;
+    
+    // Keine Elemente in der Liste
+    if (tmp->next == NULL)
+    {
+        tmp->next = student;
+        list->size++;
+        return;
     }
 
+    // Letzes Element finden
+    while(tmp->next != NULL)
+    {
+        tmp = tmp->next;
+    }
+
+    // Hinzufügen
+    tmp->next = student;
+    list->size++;
+    return;
 }

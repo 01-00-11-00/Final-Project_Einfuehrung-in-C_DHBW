@@ -2,29 +2,29 @@ Finale Aufgabe
 
 Das Programm soll eine Liste von Studenten verarbeiten
 
-Erstelle eine Studenten Struktur mit folgenden Inhalten: Nachname, Matrikelnummer, Start Datum, End Datum, geburstdatum
+DONE    Erstelle eine Studenten Struktur mit folgenden Inhalten: Nachname, Matrikelnummer, Start Datum, End Datum, geburstdatum
 
-Erstelle eine Datums Struktur (day month year) fuer das gebursdatum und einschreibungsdatum etc.
+DONE    Erstelle eine Datums Struktur (day month year) fuer das gebursdatum und einschreibungsdatum etc.
 
-Schreibe eine Funktion inputStudent: Bei dem der Benutzer alle relevanten Daten zu einem Studenten eingeben kann.
+DONE    Schreibe eine Funktion inputStudent: Bei dem der Benutzer alle relevanten Daten zu einem Studenten eingeben kann.
 
-Schreibe eine Funktion addStudent: bei der ein Student hinzugefügt wird.
+DONE    Schreibe eine Funktion addStudent: bei der ein Student hinzugefügt wird.
 
-Schreibe eine Funktion in der die Anzahl der gespeicherten Studenten zurueck gegeben werden soll.
+DONE    Schreibe eine Funktion in der die Anzahl der gespeicherten Studenten zurueck gegeben werden soll.
 
 Schreibe eine Funktion printStudent(Matrikelnummer), mit der ein Student auf dem Bildschirm ausgegeben werden soll
 
-Schreibe eine Funktion printAllStudents, mit der alle Studenten Alphabetisch auf dem Bildschirm ausgegeben werden sollen.
+DONE    Schreibe eine Funktion printAllStudents, mit der alle Studenten Alphabetisch auf dem Bildschirm ausgegeben werden sollen.
 
-Schreibe eine Funktion menue, ueber die die Verschienen funktionen aufgerufen werden sollen.
+UBENENNEN    Schreibe eine Funktion menue, ueber die die Verschienen funktionen aufgerufen werden sollen.
 
-Schreibe eine funktion deleteStudent(matrikelnummer), welche einen Studenten loescht.
+DONE    Schreibe eine funktion deleteStudent(matrikelnummer), welche einen Studenten loescht.
 
-Schreibe eine Funktion save die Alle gespeicherten Studenten in eine Datei speichert. Diese Funktion soll beim beenden des Programms automatisch aufgerufen werden und soll somit nicht im menue auftauchen
+TODO Schreibe eine Funktion save die Alle gespeicherten Studenten in eine Datei speichert. Diese Funktion soll beim beenden des Programms automatisch aufgerufen werden und soll somit nicht im menue auftauchen
 
-Schreibe eine Funktion read die eine Datei ausliest und alle Studenten daraus ins Programm laed. Diese Funktion soll beim start des Programms automatisch aufgerufen werden und soll somit nicht im menue auftauchen
+DONE Schreibe eine Funktion read die eine Datei ausliest und alle Studenten daraus ins Programm laed. Diese Funktion soll beim start des Programms automatisch aufgerufen werden und soll somit nicht im menue auftauchen
 
-Die Aufgabe soll mithilfe von Verketteten Listen gelöst werden.
+DONE Die Aufgabe soll mithilfe von Verketteten Listen gelöst werden.
 
 Abzugebende Dokumente:
 

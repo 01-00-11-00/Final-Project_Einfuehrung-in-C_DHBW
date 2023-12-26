@@ -1,4 +1,5 @@
 #include "../include/student.h"
+#include <ctype.h>
 
 void loadingScreen()
 {
@@ -43,17 +44,15 @@ void    printMenu()
     print_middle(".---------------------------------------------.\n", i++);
     print_middle("|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|\n", i++);
     print_middle("|xx.---------------------------------------.xx|\n", i++);
-    print_middle("|xx|  Herzlich Willkomen bei Student Appp! |xx|\n", i++);
-    print_middle("|xx|  Wie kann ich Ihnen Helfen ?          |xx|\n", i++);
-    print_middle("|xx|\t1- Neuen User Hinzufuegen.      |xx|\n", i++);    
-    print_middle("|xx|\t2- Ein User Loeschen.           |xx|\n", i++);    
-    print_middle("|xx|\t3- Print User's Information.    |xx|\n", i++);
-    print_middle("|xx|\t4- Number of users.             |xx|\n", i++);
-    print_middle("|xx|\t5- Print Student Info.          |xx|\n", i++);
-    print_middle("|xx|\t6- Print All Students Info.     |xx|\n", i++);
-    print_middle("|xx|\t7- Studend Info Upload.         |xx|\n", i++);
-    print_middle("|xx|\t8- Student Info Download.       |xx|\n", i++);
-    print_middle("|xx|\t9- Quit.                        |xx|\n", i++);
+    print_middle("|xx|          Studentenverwaltung          |xx|\n", i++);
+    print_middle("|xx|                                       |xx|\n", i++);
+    print_middle("|xx|\t1 - Studenten anlegen           |xx|\n", i++);    
+    print_middle("|xx|\t2 - Studenten finden            |xx|\n", i++);
+    print_middle("|xx|\t3 - Studenten löschen           |xx|\n", i++);    
+    print_middle("|xx|\t4 - Anzahl Studenten            |xx|\n", i++);
+    print_middle("|xx|\t5 - Alle Studenten ausgeben     |xx|\n", i++);
+    print_middle("|xx|\t6 - Daten exportieren           |xx|\n", i++);
+    print_middle("|xx|\t7 - Programm beenden            |xx|\n", i++);
     print_middle("|xx|  >                                    |xx|\n", i++);
     print_middle("|xx*---------------------------------------*xx|\n", i++);
     print_middle("|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|\n", i++);
@@ -61,7 +60,7 @@ void    printMenu()
     print_middle("                |xxxxxxxxxxxxx|\n", i++);
     print_middle("               /xxxxxxxxxxxxxxx\\\n", i++);
     print_middle("              |xxxxxxxxxxxxxxxxx|\n", i++);
-    printf("\033[19;38H");
+    printf("\033[17;38H");
 }
 
 void    chomp(char *s)
@@ -115,3 +114,4 @@ bool string_only_space(char *str)
 //     printf("\33[2K\r");
 //     usleep(500000);
 // }
+
