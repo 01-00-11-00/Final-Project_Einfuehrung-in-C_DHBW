@@ -8,7 +8,7 @@
 #include <ctype.h>
 #include "student_list.h"
 
-static int     g_line = 24;
+extern int     g_line;
 
 struct s_datum {
     int tag;
@@ -17,13 +17,13 @@ struct s_datum {
 };
 
 struct s_student {
-    char *nachname;
-    char *matrikelnummer;
-    struct s_datum startDatum;
-    struct s_datum endDatum;
-    struct s_datum geburtsDatum;
+    char                *nachname;
+    char                *matrikelnummer;
+    struct s_datum      startDatum;
+    struct s_datum      endDatum;
+    struct s_datum      geburtsDatum;
     
-    struct s_student *next;
+    struct s_student    *next;
 };
 
 
@@ -38,8 +38,6 @@ int     input_student(struct s_student *s);
 
 int     student_info_print_one(struct s_student *student);
 int     student_info_print_all(struct s_student *student);
-int     student_info_write(struct s_student *student);
-int     student_info_read(struct s_student *student);
 
 // student.c
 bool    student_create(struct s_student **student);

@@ -1,4 +1,4 @@
-#include "../include/student.h"
+#include "student.h"
 
 char *trim_string(char *str)
 {
@@ -75,15 +75,15 @@ void import_students(StudentList *list)
         
         printf("Imported student %s\n", student->nachname);
         student->matrikelnummer =  trim_string(student->matrikelnummer);
-        // student_info_print_one(student);
     }
     fclose(file);
+    printf("\033[35;10HEnter drücken, um fortzufahren\n");
     getchar();
 }
 
 int export_students(StudentList *list)
 {
-    const char          *filename = "students_export.csv";
+    const char          *filename = "students.csv";
     FILE                *file = fopen(filename, "w");
     struct s_student    *tmp = list->head;
 
@@ -105,7 +105,7 @@ int export_students(StudentList *list)
 bool    student_program( StudentList *list)
 {
     int wahl, ret_code;
-    struct s_student *student;
+    char    buf[10]; // use 1/100KB just to be sure
 
     import_students(list);
 
@@ -114,20 +114,14 @@ bool    student_program( StudentList *list)
         system("clear");
         printMenu();
         
-        char buf[10]; // use 1/100KB just to be sure
         memset(buf, 0, 10); // clear the buffer before reading
-
         do
         {     
             if(fgets(buf, 10, stdin) == NULL) // read from stdin 
-            { 
                 exit(1);
-            }
             wahl = atoi(buf);
         } 
         while (wahl == 0); // repeat until we got a valid number
-        
-        
         switch(wahl)
         {
             case 1:

@@ -1,5 +1,6 @@
-#include "../include/student.h"
-#include <ctype.h>
+#include "student.h"
+
+int     g_line = 24;
 
 void loadingScreen()
 {

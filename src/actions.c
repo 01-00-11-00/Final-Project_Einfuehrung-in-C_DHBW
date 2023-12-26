@@ -1,4 +1,4 @@
-#include "../include/student.h"
+#include "student.h"
 
 
 static void    chomp_local(char *s)
@@ -26,32 +26,17 @@ int     student_info_print_one(struct s_student *student)
     return (true);
 }
 
-int     student_info_print_all(struct s_student *student)
-{
-    return (true);
-}
-
-int     student_info_write(struct s_student *student)
-{
-    return (true);
-}
-
-int     student_info_read(struct s_student *student)
-{
-    return (true);
-}
-
 
 /* Muss ein User zu unsere Linked List hinzufuegen */
 bool    addStudent(StudentList *list)
 {  
     struct s_student *new_student = malloc(sizeof(struct s_student)); // allocate storage space
 
-    memset(new_student, 0, sizeof(new_student));
+    memset(new_student, 0, sizeof(*new_student));
     new_student->nachname = malloc(sizeof(char) * 100);
-    memset(new_student->nachname, 0, sizeof(new_student->nachname));
+    memset(new_student->nachname, 0, sizeof(sizeof(char) * 100));
     new_student->matrikelnummer = malloc(sizeof(char) * 10);
-    memset(new_student->matrikelnummer, 0, sizeof(new_student->matrikelnummer));
+    memset(new_student->matrikelnummer, 0, sizeof(sizeof(char) * 10));
     if (new_student == NULL || new_student->nachname == NULL || new_student->matrikelnummer == NULL) 
         return (false);
     input_student(new_student);

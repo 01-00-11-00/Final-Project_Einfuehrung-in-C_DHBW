@@ -1,4 +1,4 @@
-nachname,matrikelnummer,geburtsdatum,start,ende
-Test2,12345,10.08.2005,01.08.2023,09.10.2024
-Test,1234,10.08.2005,01.08.2023,09.10.2024
-Jesus, 1, 24.12.1, 01.01.20, 01.01.25
+Nachname,Matrikelnummer,Geburtsdatum,Startdatum,Enddatum
+Test2,12345,10.8.2005,1.8.2023,9.10.2024
+Test,1234,10.8.2005,1.8.2023,9.10.2024
+Jesus,1,24.12.1,1.1.20,1.1.25

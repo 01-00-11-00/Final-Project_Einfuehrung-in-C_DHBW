@@ -1,5 +1,5 @@
-#include "../include/student_list.h"
-#include "../include/student.h"
+#include "student_list.h"
+#include "student.h"
 
 
 bool printAllStudents(StudentList *list)

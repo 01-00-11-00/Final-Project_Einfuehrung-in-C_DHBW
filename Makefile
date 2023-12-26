@@ -6,12 +6,12 @@ HEADERS 	= $(shell find . -name "*.h")
 OBJECTS 	= $(patsubst %.c, %.o, $(SOURCES))
 DEPENDS 	= $(patsubst %.c, %.d, $(SOURCES))
 
-CFLAGS 		= -g
+CFLAGS 		= -Werror -Wall -Wextra -g
 
 all: $(NAME)
 
 %.o: %.c
-	@$(CC) -Iincludes $(CFLAGS) -c $< -o $@
+	@$(CC) -Iinclude $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
 	@echo "Dependencies Compiled !"
