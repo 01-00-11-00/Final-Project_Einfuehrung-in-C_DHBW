@@ -65,6 +65,7 @@ void import_students(StudentList *list)
         return;
     }
     printf("Importiere Studenten...\n");
+    loadingScreen();
     fscanf(file, "%*[^\n]\n");
     while (!feof(file)) {
         struct s_student *student = malloc(sizeof(struct s_student));

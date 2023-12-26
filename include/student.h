@@ -32,10 +32,8 @@ bool    addStudent(StudentList *list);
 bool    printStudent(StudentList *list);
 bool    deleteStudent(StudentList *list);
 int     number_of_students(StudentList *list);
-
 void    insert_student(StudentList *list, struct s_student *student);
 int     input_student(struct s_student *s);
-
 int     student_info_print_one(struct s_student *student);
 int     student_info_print_all(struct s_student *student);
 
