@@ -42,7 +42,7 @@ Um alle erzeugten .o-Dateien und die ausführbare Datei zu löschen, führen Sie
 	make fclean
 ``` 
 
-## &> src/student.c
+## src/student.c
 
 ### Funktion trim_string:
 Diese Funktion entfernt führende und abschließende Leerzeichen (Whitespaces) aus einem gegebenen String str und gibt den modifizierten String zurück. Falls der ursprüngliche String str NULL ist oder bereits leer ('\0'), wird der ursprüngliche String unverändert zurückgegeben.
