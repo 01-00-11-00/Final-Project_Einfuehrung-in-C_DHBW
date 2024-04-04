@@ -2,11 +2,11 @@
 This repository contains the final exam of Einführung in C DHBW.
 
 ## TINFCS2:
-- Leon Seijo Erler
-- Finn Thieringer
-- Nils Fast
-- Amelie Hunstock
-- Mouad Abid
+- 01-00-11-00
+- HALOTSCH
+- nilsfast
+- amx1ix
+- moabid42
 
 ## Code-Struktur:
 ```
